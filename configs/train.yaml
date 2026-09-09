@@ -1,0 +1,28 @@
+model:
+  backbone: "ViT-L-14-quickgelu"
+  pretrained: "openai"
+  hidden_dim: 512
+  hidden_layers: 2
+  dropout: 0.1
+  prompt: "a photo of *"
+
+training:
+  epochs: 30
+  batch_size_per_device: 128
+  learning_rate: 0.0001
+  weight_decay: 0.1
+  warmup_steps: 10000
+  precision: "amp"
+  seed: 42
+  num_workers: 8
+  save_every_epochs: 1
+
+data:
+  train_manifest: "data/cc/Train_GCC-training_output.csv"
+  image_root: "data/cc_data/train"
+  image_column: null
+  max_samples: null
+
+output:
+  checkpoint_dir: "checkpoints"
+  log_dir: "logs"

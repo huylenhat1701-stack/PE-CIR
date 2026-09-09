@@ -1,0 +1,27 @@
+{
+  "dataset": "CIRR",
+  "split": "val",
+  "version": "rc2",
+  "query_count": 36,
+  "total_query_count": 4181,
+  "query_coverage_percent": 0.8610380291796221,
+  "candidate_count": 980,
+  "total_candidate_count": 2297,
+  "candidate_coverage_percent": 42.66434479756204,
+  "checkpoint": "C:\\Pic2word\\checkpoints\\local_final\\pic2word\\last.pt",
+  "partial": true,
+  "officially_comparable": false,
+  "missing_image_count": 1317,
+  "excluded_query_count": 4145,
+  "global_recall": {
+    "1": 33.333333333333336,
+    "5": 69.44444444444444,
+    "10": 83.33333333333333,
+    "50": 86.11111111111111
+  },
+  "group_recall": {
+    "1": 66.66666666666667,
+    "2": 77.77777777777777,
+    "3": 83.33333333333333
+  }
+}

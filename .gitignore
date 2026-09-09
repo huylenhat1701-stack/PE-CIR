@@ -1,0 +1,42 @@
+# Python environments and generated caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+build/
+dist/
+.coverage
+htmlcov/
+
+# Datasets, model weights, and generated experiment artifacts
+/data/
+/datasets/
+/checkpoints/
+/indexes/
+/logs/
+/output/
+/outputs/
+/tmp/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+*.npy
+*.npz
+/reports/*download_failures.json
+
+# Local analysis tools and private configuration
+.codegraph/
+.understand-anything/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.DS_Store
+Thumbs.db
