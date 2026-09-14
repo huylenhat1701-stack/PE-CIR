@@ -20,7 +20,7 @@ from pic2word.retrieval import CandidateIndex, build_candidate_index
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dataset-root", type=Path, default=Path("data/cirr"))
-    parser.add_argument("--split", default="val")
+    parser.add_argument("--split", choices=("val",), default="val")
     parser.add_argument("--version", default="rc2")
     parser.add_argument(
         "--checkpoint",
@@ -72,7 +72,7 @@ def load_model(
     backbone = FrozenCLIPBackbone.from_pretrained(
         model_name=model_config["backbone"],
         pretrained=model_config["pretrained"],
-        cache_dir="checkpoints/clip",
+        cache_dir=model_config.get("cache_dir", "checkpoints/clip"),
         device=device,
     )
     mapping_network = MappingNetwork(
@@ -184,6 +184,11 @@ def main() -> int:
         print(f"Group Recall@{k}: {value:.2f}")
     output_path = args.output.resolve()
     output_path.parent.mkdir(parents=True, exist_ok=True)
+    predictions_path = output_path.with_suffix(".predictions.jsonl")
+    with predictions_path.open("w", encoding="utf-8") as stream:
+        for prediction in result.predictions:
+            stream.write(json.dumps(prediction, ensure_ascii=False) + "\n")
+    partial = bool(missing_image_count) or result.query_count != total_query_count
     output_path.write_text(
         json.dumps(
             {
@@ -199,8 +204,9 @@ def main() -> int:
                     100.0 * len(dataset.candidate_ids) / total_candidate_count
                 ),
                 "checkpoint": str(args.checkpoint.resolve()),
-                "partial": bool(missing_image_count),
-                "officially_comparable": not bool(missing_image_count),
+                "partial": partial,
+                "officially_comparable": not partial,
+                "predictions": str(predictions_path),
                 "missing_image_count": missing_image_count,
                 "excluded_query_count": excluded_query_count,
                 "global_recall": result.global_recall,

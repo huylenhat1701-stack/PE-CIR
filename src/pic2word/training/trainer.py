@@ -45,6 +45,7 @@ class TrainerState:
 
     epoch: int = 0
     global_step: int = 0
+    batches_in_epoch: int = 0
 
 
 class TrainingStepMetrics(NamedTuple):
@@ -160,13 +161,19 @@ class Pic2WordTrainer:
 
         self.model.train()
         metrics: list[TrainingStepMetrics] = []
-        for images in dataloader:
+        for batch_index, images in enumerate(dataloader):
+            if batch_index < self.state.batches_in_epoch:
+                continue
             if max_steps is not None and self.state.global_step >= max_steps:
                 break
             step_metrics = self.train_step(images, prompt)
+            self.state.batches_in_epoch = batch_index + 1
             metrics.append(step_metrics)
             if on_step is not None:
                 on_step(step_metrics)
+        else:
+            self.state.epoch += 1
+            self.state.batches_in_epoch = 0
         return metrics
 
     def save_checkpoint(self, path: str | Path) -> Path:
@@ -182,6 +189,8 @@ class Pic2WordTrainer:
             "scaler": self.scaler.state_dict(),
             "state": asdict(self.state),
             "trainer_config": asdict(self.config),
+            "torch_rng_state": torch.get_rng_state(),
+            "cuda_rng_states": torch.cuda.get_rng_state_all() if self.device.type == "cuda" else [],
         }
         torch.save(payload, temporary_path)
         temporary_path.replace(checkpoint_path)
@@ -197,3 +206,7 @@ class Pic2WordTrainer:
         self.scheduler.load_state_dict(payload["scheduler"])
         self.scaler.load_state_dict(payload["scaler"])
         self.state = TrainerState(**payload["state"])
+        if "torch_rng_state" in payload:
+            torch.set_rng_state(payload["torch_rng_state"].cpu())
+        if self.device.type == "cuda" and payload.get("cuda_rng_states"):
+            torch.cuda.set_rng_state_all([state.cpu() for state in payload["cuda_rng_states"]])

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Callable, Sequence
 from dataclasses import dataclass
+from typing import Any
 
 from pic2word.data.cirr import CIRRSplit
 from pic2word.evaluation.metrics import recall_at_k
@@ -19,6 +20,7 @@ class CIRREvaluationResult:
     global_recall: dict[int, float]
     group_recall: dict[int, float]
     query_count: int
+    predictions: tuple[dict[str, Any], ...] = ()
 
 
 def evaluate_cirr(
@@ -53,6 +55,7 @@ def evaluate_cirr(
     global_rankings: list[list[str]] = []
     group_rankings: list[list[str]] = []
     targets: list[str] = []
+    predictions: list[dict[str, Any]] = []
 
     for completed, query in enumerate(queries, start=1):
         reference_path = dataset.path_for(query.reference_id)
@@ -71,6 +74,15 @@ def evaluate_cirr(
         global_rankings.append([path_to_id[result.path] for result in global_results])
         group_rankings.append([path_to_id[result.path] for result in group_results])
         targets.append(query.target_id)
+        predictions.append({
+            "pair_id": query.pair_id,
+            "reference_id": query.reference_id,
+            "target_id": query.target_id,
+            "caption": query.caption,
+            "global_top50": global_rankings[-1],
+            "group_top3": group_rankings[-1],
+            "global_scores": [result.score for result in global_results],
+        })
         if progress is not None:
             progress(completed, len(queries))
 
@@ -78,4 +90,5 @@ def evaluate_cirr(
         global_recall=recall_at_k(global_rankings, targets, global_ks),
         group_recall=recall_at_k(group_rankings, targets, group_ks),
         query_count=len(queries),
+        predictions=tuple(predictions),
     )

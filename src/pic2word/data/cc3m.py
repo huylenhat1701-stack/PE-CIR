@@ -6,6 +6,7 @@ import csv
 from collections.abc import Callable
 from pathlib import Path
 
+import torch
 from PIL import Image
 from torch import Tensor
 from torch.utils.data import DataLoader, Dataset
@@ -108,6 +109,7 @@ def build_cc3m_dataloader(
     shuffle: bool = True,
     drop_last: bool = True,
     pin_memory: bool = False,
+    seed: int = 0,
 ) -> DataLoader[Tensor]:
     """Create the image-only DataLoader consumed by the Pic2Word trainer."""
 
@@ -131,4 +133,5 @@ def build_cc3m_dataloader(
         drop_last=drop_last,
         pin_memory=pin_memory,
         persistent_workers=num_workers > 0,
+        generator=torch.Generator().manual_seed(seed),
     )

@@ -1,0 +1,43 @@
+HUONG DAN DANG NHAP SSH MAY CHU AIOTLAB
+
+1. Mo PowerShell hoac Windows Terminal tren may Windows.
+
+2. Dan lenh sau va nhan Enter:
+
+ssh quynhptit@aiotlab.viu.edu.vn -p 30101
+
+3. Neu lan dau ket noi co thong bao:
+   Are you sure you want to continue connecting (yes/no/[fingerprint])?
+   Doi chieu fingerprint voi co/quan tri vien. Neu dung, go yes va Enter.
+   Khong viet yes chung vao lenh SSH.
+
+4. Khi hien password:, nhap mat khau co da cap va nhan Enter.
+   Mat khau khong hien ky tu hay dau * khi go. Day la binh thuong.
+   Mat khau khong duoc luu trong tep nay; xem lai tin nhan cap tai khoan.
+
+5. Khi dang nhap thanh cong, co the kiem tra:
+
+whoami
+hostname
+pwd
+nvidia-smi
+
+6. De thoat khoi may chu:
+
+exit
+
+THONG TIN KET NOI
+Tai khoan: quynhptit
+May chu: aiotlab.viu.edu.vn
+Cong SSH: 30101
+
+LOI THUONG GAP
+- Permission denied: kiem tra tai khoan va mat khau; luu y Caps Lock.
+- Connection timed out: kiem tra Internet va hoi co may chu co truy cap duoc khong.
+- Connection refused: kiem tra cong 30101 va tinh trang dich vu SSH voi quan tri vien.
+- REMOTE HOST IDENTIFICATION HAS CHANGED: hoi quan tri vien xac nhan truoc khi sua known_hosts.
+
+LUU Y
+- Khong them dau \ truoc @ trong lenh SSH.
+- Mat khau duoc nhap rieng khi SSH hoi, khong dan vao lenh.
+- Thong nhat khung gio va GPU voi co truoc khi chay huan luyen.

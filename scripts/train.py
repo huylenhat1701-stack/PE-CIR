@@ -4,8 +4,10 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 import random
+import subprocess
 import time
 from pathlib import Path
 from typing import Any
@@ -17,6 +19,7 @@ import yaml
 from pic2word.config import MappingNetworkConfig
 from pic2word.data import build_cc3m_dataloader
 from pic2word.models import FrozenCLIPBackbone, MappingNetwork, Pic2WordModel
+from pic2word.preflight import validate_training_inputs
 from pic2word.training import Pic2WordTrainer, TrainerConfig, TrainingStepMetrics
 
 
@@ -28,6 +31,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--max-steps", type=int)
     parser.add_argument("--max-samples", type=int)
     parser.add_argument("--resume", type=Path)
+    parser.add_argument("--preflight-only", action="store_true")
     return parser
 
 
@@ -62,6 +66,42 @@ def main() -> int:
     training_config = config["training"]
     data_config = config["data"]
     output_config = config["output"]
+    for argument, key in ((args.batch_size, "batch_size_per_device"), (args.max_steps, "max_steps")):
+        if argument is not None:
+            training_config[key] = argument
+    if args.max_samples is not None:
+        data_config["max_samples"] = args.max_samples
+    checked = validate_training_inputs(config)
+    print(f"Data preflight passed: {checked}")
+    if args.preflight_only:
+        return 0
+    checkpoint_dir = Path(output_config["checkpoint_dir"]).resolve() / "pic2word"
+    log_dir = Path(output_config["log_dir"]).resolve() / "pic2word"
+    if args.resume is None and ((checkpoint_dir / "last.pt").exists() or
+                                (log_dir / "training_metrics.csv").exists()):
+        raise FileExistsError("Run already exists. Use --resume or choose a new output directory.")
+    previous_config_path = log_dir / "resolved_config.yaml"
+    if args.resume is not None and previous_config_path.is_file():
+        previous = load_config(previous_config_path)
+        for section, keys in {
+            "model": ("backbone", "pretrained", "hidden_dim", "hidden_layers", "dropout", "prompt"),
+            "training": ("batch_size_per_device", "seed", "learning_rate", "weight_decay", "warmup_steps", "precision"),
+            "data": ("train_manifest", "image_root", "image_column", "max_samples"),
+        }.items():
+            for key in keys:
+                if previous[section].get(key) != config[section].get(key):
+                    raise ValueError(f"Cannot change {section}.{key} when resuming; use a new run")
+    log_dir.mkdir(parents=True, exist_ok=True)
+    revision = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True, check=False)
+    config["provenance"] = {"git_revision": revision.stdout.strip(), "torch": str(torch.__version__)}
+    config["provenance"]["manifest_sha256"] = hashlib.sha256(
+        Path(data_config["train_manifest"]).read_bytes()).hexdigest()
+    if args.resume is not None and previous_config_path.is_file():
+        old_hash = previous.get("provenance", {}).get("manifest_sha256")
+        if old_hash and old_hash != config["provenance"]["manifest_sha256"]:
+            raise ValueError("Training manifest changed since the original run")
+    config_path = log_dir / ("resume_config.yaml" if args.resume else "resolved_config.yaml")
+    config_path.write_text(yaml.safe_dump(config), encoding="utf-8")
     device = resolve_device(args.device)
     set_seed(int(training_config["seed"]))
 
@@ -69,7 +109,7 @@ def main() -> int:
     backbone = FrozenCLIPBackbone.from_pretrained(
         model_name=model_config["backbone"],
         pretrained=model_config["pretrained"],
-        cache_dir="checkpoints/clip",
+        cache_dir=model_config.get("cache_dir", "checkpoints/clip"),
         device=device,
     )
     mapping_network = MappingNetwork(
@@ -97,9 +137,9 @@ def main() -> int:
         trainer.load_checkpoint(args.resume)
         print(f"Resumed from step {trainer.state.global_step}: {args.resume.resolve()}")
 
-    batch_size = args.batch_size or int(training_config["batch_size_per_device"])
-    max_samples = args.max_samples or data_config.get("max_samples")
-    max_steps = args.max_steps or training_config.get("max_steps")
+    batch_size = int(training_config["batch_size_per_device"])
+    max_samples = data_config.get("max_samples")
+    max_steps = training_config.get("max_steps")
     dataloader = build_cc3m_dataloader(
         data_config["train_manifest"],
         data_config["image_root"],
@@ -111,6 +151,7 @@ def main() -> int:
         shuffle=True,
         drop_last=True,
         pin_memory=device.type == "cuda",
+        seed=int(training_config["seed"]),
     )
 
     checkpoint_dir = Path(output_config["checkpoint_dir"]).resolve() / "pic2word"
@@ -130,11 +171,15 @@ def main() -> int:
         )
         with metrics_path.open("a", encoding="utf-8", newline="") as stream:
             csv.DictWriter(stream, fieldnames=fieldnames).writerow(metrics._asdict())
+        interval = int(training_config.get("save_every_steps", 0))
+        if interval and metrics.step > 0 and metrics.step % interval == 0:
+            trainer.save_checkpoint(checkpoint_dir / "last.pt")
 
     epochs = int(training_config["epochs"])
     started_at = time.perf_counter()
     last_metrics: TrainingStepMetrics | None = None
     for epoch in range(trainer.state.epoch, epochs):
+        dataloader.generator.manual_seed(int(training_config["seed"]) + epoch)
         print(f"Epoch {epoch + 1}/{epochs}")
         metrics = trainer.train_epoch(
             dataloader,
@@ -145,8 +190,7 @@ def main() -> int:
         if not metrics:
             break
         last_metrics = metrics[-1]
-        trainer.state.epoch = epoch + 1
-        if trainer.state.epoch % int(training_config["save_every_epochs"]) == 0:
+        if trainer.state.batches_in_epoch == 0 and trainer.state.epoch % int(training_config["save_every_epochs"]) == 0:
             trainer.save_checkpoint(checkpoint_dir / f"epoch_{trainer.state.epoch:03d}.pt")
         trainer.save_checkpoint(checkpoint_dir / "last.pt")
         if max_steps is not None and trainer.state.global_step >= int(max_steps):
@@ -163,6 +207,10 @@ def main() -> int:
                 "global_step": trainer.state.global_step,
                 "training_samples": len(dataloader.dataset),
                 "batch_size": batch_size,
+                "contrastive_negatives_per_sample": batch_size - 1,
+                "seed": int(training_config["seed"]),
+                "purpose": training_config.get("purpose", "baseline_training"),
+                "batches_in_epoch": trainer.state.batches_in_epoch,
                 "elapsed_seconds": time.perf_counter() - started_at,
                 "last_metrics": last_metrics._asdict() if last_metrics else None,
                 "checkpoint": str(latest_checkpoint),

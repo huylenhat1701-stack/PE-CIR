@@ -29,6 +29,7 @@ htmlcov/
 *.npy
 *.npz
 /reports/*download_failures.json
+/reports/*.predictions.jsonl
 
 # Local analysis tools and private configuration
 .codegraph/
