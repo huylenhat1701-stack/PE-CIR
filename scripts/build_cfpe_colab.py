@@ -25,6 +25,7 @@ Notebook này giữ CLIP ViT-L/14 đóng băng và tách rõ B0, B1, B4, B5. Ch�
 AUDIT_APPROVED = False  # chỉ đặt True sau khi đã xem mining_audit.csv
 RUN_B0_SCHEDULE = False  # bật nếu cần chạy lại B0 1K -> 10K -> 100K
 RUN_B5_AFTER_GO = True
+USE_GOOGLE_DRIVE = False  # smoke chạy ổn định trong /content; bật khi cần giữ checkpoint lâu dài
 SETTINGS = {
     "smoke": {"num_shards": 2, "images_per_shard": 2000, "min_tuples": 20, "max_tuples": 1000, "steps": 20},
     "screening": {"num_shards": 20, "images_per_shard": 5000, "min_tuples": 20000, "max_tuples": 50000, "steps": 2000},
@@ -32,41 +33,37 @@ SETTINGS = {
 print(MODE, SETTINGS)
 """),
     md("cfpe-002", """## 1. Nạp code và kiểm thử
-Tải lên `CF-PE-CIR-colab-code.zip` được tạo cùng notebook này.
+Notebook tải trực tiếp phiên bản mới nhất từ nhánh `main`, sau đó cài dependency và chạy test.
 """),
-    code("cfpe-003", """from google.colab import files
-from pathlib import Path
-import csv, io, json, os, shutil, subprocess, sys, zipfile
-uploaded = files.upload()
-bundle = uploaded.get("CF-PE-CIR-colab-code.zip")
-if bundle is None:
-    raise ValueError("Hãy tải đúng tệp CF-PE-CIR-colab-code.zip")
+    code("cfpe-003", """from pathlib import Path
+import csv, json, os, shutil, subprocess, sys
 repo = Path("/content/PE-CIR")
-if repo.exists(): shutil.rmtree(repo)
-repo.mkdir()
-with zipfile.ZipFile(io.BytesIO(bundle)) as archive:
-    for item in archive.infolist():
-        if not (repo / item.filename).resolve().is_relative_to(repo.resolve()):
-            raise ValueError("ZIP chứa đường dẫn không an toàn")
-    archive.extractall(repo)
+if repo.exists():
+    shutil.rmtree(repo)
+subprocess.run(["git", "clone", "--depth", "1",
+    "https://github.com/huylenhat1701-stack/PE-CIR.git", str(repo)], check=True)
 os.chdir(repo)
 subprocess.run([sys.executable, "-m", "pip", "install", "-q", "-e", ".[dev]", "huggingface_hub"], check=True)
 subprocess.run([sys.executable, "-m", "pytest", "-q"], check=True)
 """),
     md("cfpe-004", """## 2. GPU và Google Drive
-Mọi checkpoint và log được lưu vào Drive. Nếu mount lỗi, chạy lại riêng ô này và hoàn tất cửa sổ cấp quyền.
+Mặc định smoke test lưu tạm trong `/content/CF-PE-CIR-output`. Đặt `USE_GOOGLE_DRIVE=True` ở ô đầu nếu muốn giữ dữ liệu và checkpoint sau khi phiên Colab kết thúc.
 """),
     code("cfpe-005", """import torch
-from google.colab import drive
 assert torch.cuda.is_available(), "Hãy chọn Runtime > Change runtime type > GPU"
 print(torch.cuda.get_device_name(0), round(torch.cuda.get_device_properties(0).total_memory / 2**30, 1), "GB")
-if not Path("/content/drive/MyDrive").is_dir():
-    drive.mount("/content/drive")
-drive_root = Path("/content/drive/MyDrive/CF-PE-CIR")
+if USE_GOOGLE_DRIVE:
+    from google.colab import drive
+    if not Path("/content/drive/MyDrive").is_dir():
+        drive.mount("/content/drive")
+    drive_root = Path("/content/drive/MyDrive/CF-PE-CIR")
+else:
+    drive_root = Path("/content/CF-PE-CIR-output")
 data_root = drive_root / "data"
 runs_root = drive_root / "runs"
 data_root.mkdir(parents=True, exist_ok=True)
 runs_root.mkdir(parents=True, exist_ok=True)
+print("Thư mục kết quả:", drive_root)
 """),
     md("cfpe-006", """## 3. Tải CC3M có caption
 Mỗi shard khoảng 488 MB. `smoke` tải ít dữ liệu để kiểm tra code. `screening` cần nhiều shard vì yêu cầu 20K–50K pseudo-edits.
