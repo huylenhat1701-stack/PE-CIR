@@ -1,5 +1,6 @@
 """Prompt composition and retrieval helpers."""
 
+from pic2word.retrieval.cfpe import CFPERetrievalResult, search_cfpe
 from pic2word.retrieval.index import (
     CandidateIndex,
     RetrievalResult,
@@ -15,6 +16,7 @@ from pic2word.retrieval.prompts import (
 from pic2word.retrieval.search import encode_composed_query, search_pic2word
 
 __all__ = [
+    "CFPERetrievalResult",
     "CandidateIndex",
     "RetrievalResult",
     "build_candidate_index",
@@ -23,6 +25,7 @@ __all__ = [
     "build_sentence_prompt",
     "encode_composed_query",
     "find_candidate_images",
+    "search_cfpe",
     "search_pic2word",
     "validate_prompt",
 ]

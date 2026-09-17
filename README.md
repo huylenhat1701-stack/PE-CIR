@@ -1,16 +1,19 @@
 # PE-CIR
 
-Triển khai baseline Pic2Word để chuẩn bị thí nghiệm Preserve–Edit theo
-`PE-CIR_Experimental.docx`. CLIP ViT-L/14 đóng băng; chỉ train mapper MLP.
+Triển khai CF-PE-CIR theo runbook E2. CLIP ViT-L/14 luôn đóng băng. Dự án giữ
+baseline Pic2Word (B0) và bổ sung Preserve/Edit factorization (B1),
+counterfactual ranking với CF-A/CF-B (B4), và constraint verifier rerank Top-K (B5).
 
 ## Chạy trên Colab
 
-1. Mở Colab, chọn **File → Upload notebook**, tải `notebooks/PE_CIR_Colab.ipynb`.
+1. Mở Colab, chọn **File → Upload notebook**, tải `notebooks/CF_PE_CIR_Colab.ipynb`.
 2. Chọn **Runtime → Change runtime type → GPU**.
-3. Chạy từng ô; ở ô đầu tải `PE-CIR-colab-code.zip` đi kèm.
+3. Chạy từng ô; ở ô đầu tải `output/CF-PE-CIR-colab-code.zip` đi kèm.
 4. Cho phép gắn Drive để lưu checkpoint và log.
-5. Notebook tải một shard CC3M, lấy tối đa 1.000 ảnh, train thử 20 bước với seed 0.
-6. Xem log trước khi bật tiếp tục 200 bước. Đây vẫn là smoke test.
+5. Giữ `MODE = "smoke"` để kiểm tra pipeline trước; đổi sang `screening` để tạo
+   20K–50K pseudo-edits từ nhiều CC3M shard có caption.
+6. Kiểm tra `mining_audit.csv`, sau đó xác nhận `AUDIT_APPROVED = True`.
+7. Notebook chạy B1, B4, kiểm tra GO gate rồi mới chạy B5 và benchmark đầy đủ.
 
 Colab cấp GPU tùy thời điểm. Batch 4 chỉ là điểm khởi đầu thử nghiệm; nếu OOM,
 giảm xuống 2 và chọn RUN_NAME mới. Batch nhỏ không đáp ứng mục tiêu batch 1024
@@ -35,17 +38,33 @@ Checkpoint lưu số batch đã xử lý trong epoch và RNG Torch; với prepro
 num_workers=0 và môi trường không đổi, phần dữ liệu đã chạy sẽ được bỏ qua khi resume.
 Đổi môi trường GPU/thư viện có thể làm kết quả số học khác đi.
 
-## Tiêu chí tiến tới PE-CIR
+## Các model và STOP RULE
 
-- Xác nhận Pic2Word trên CIRR val và Fashion-IQ val đầy đủ trước khi triển khai P/E gate.
-- Báo cáo cũ chỉ có 36/4.181 truy vấn CIRR và không được dùng làm kết quả tái lập.
-- Đánh giá CIRR lưu metrics cùng `.predictions.jsonl`. Thiếu ảnh hoặc giới hạn số query
-  đều được gắn nhãn partial. Loader Fashion-IQ chưa được triển khai.
-- Dùng validation để chọn hyperparameter; không tune test hoặc train bằng triplet benchmark.
-- Khi baseline đạt yêu cầu: tạo pseudo-edit CC3M, kiểm tra chất lượng, rồi lần lượt
-  A1–A5; log gate collapse, preserve/edit losses và đánh giá hard negative.
-- Screening PE-CIR dùng 20–30% dữ liệu và seed 0; xác nhận full data; kết quả cuối
-  dùng cố định seed 0, 1, 2 và báo cáo mean ± std.
+- B0: Pic2Word baseline.
+- B1: P/E factorizer và Stage-1 query, loss `L_ret + 0.2 L_fac`.
+- B4: B1 + margin ranking cho CF-A và CF-B, `lambda_CF=1.0`.
+- B5: B4 + verifier BCE, `lambda_ver=0.5`, chỉ rerank Top-K 50/100.
+- Chỉ chạy B5/full benchmark khi B4 cải thiện CF win và hard-negative error so với B1.
+- Không fine-tune full CLIP, không dùng downstream triplet để train, không thêm
+  MLLM/diffusion/multi-image trước khi B4/B5 chứng minh giá trị.
+
+Các lệnh chính ngoài notebook:
+
+```sh
+python scripts/mine_pseudo_edits.py --source-manifest data/cc3m_captioned.csv \
+  --output data/pseudo_edits/train.csv --audit runs/mining_audit.csv \
+  --config-output runs/mining_config.json
+python scripts/train_cfpe.py --config configs/cfpe_b1.yaml --device cuda
+python scripts/train_cfpe.py --config configs/cfpe_b4.yaml --device cuda
+python scripts/evaluate_counterfactual.py --manifest data/pseudo_edits/val.csv \
+  --image-root data/cc_data/train --checkpoint runs/B4_seed0/best_checkpoint.pt \
+  --run-dir runs/B4_seed0 --device cuda
+```
+
+CIRR và Fashion-IQ chỉ dùng validation để chọn cấu hình. Script đánh giá từ chối
+CIRR thiếu ảnh thay vì tạo kết quả partial. Mỗi run lưu `config.yaml`, `train.log`,
+`metrics.json`, `per_query_predictions.json`, `constraint_scores.json`,
+`best_checkpoint.pt`, `seed.txt` và `git_commit.txt`.
 
 Nguồn baseline: https://github.com/google-research/composed_image_retrieval
 CC3M mẫu: https://huggingface.co/datasets/pixparse/cc3m-wds

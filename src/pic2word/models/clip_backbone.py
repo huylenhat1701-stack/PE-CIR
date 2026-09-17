@@ -136,6 +136,13 @@ class FrozenCLIPBackbone(nn.Module):
         with torch.no_grad():
             return self.clip.encode_image(images.to(self.device), normalize=normalize)
 
+    def encode_text(self, texts: Sequence[str], *, normalize: bool = False) -> Tensor:
+        """Encode ordinary text with the frozen CLIP text tower."""
+
+        token_ids = self.tokenize(texts)
+        with torch.no_grad():
+            return self.clip.encode_text(token_ids, normalize=normalize)
+
     def encode_text_embeddings(
         self,
         token_ids: Tensor,

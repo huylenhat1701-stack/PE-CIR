@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import json
 import shutil
 import tarfile
 from pathlib import Path, PurePosixPath
@@ -42,6 +43,25 @@ def _is_valid_image(path: Path) -> bool:
         return False
 
 
+def _read_caption(archive: tarfile.TarFile, member: tarfile.TarInfo | None) -> str:
+    if member is None:
+        return ""
+    source = archive.extractfile(member)
+    if source is None:
+        return ""
+    with source:
+        text = source.read(1024 * 1024).decode("utf-8", errors="replace").strip()
+    if Path(member.name).suffix.lower() == ".json":
+        try:
+            payload = json.loads(text)
+            for key in ("caption", "text", "txt"):
+                if isinstance(payload.get(key), str):
+                    return payload[key].strip()
+        except (json.JSONDecodeError, AttributeError):
+            return ""
+    return text
+
+
 def prepare_shard(
     archive_path: Path,
     output_dir: Path,
@@ -60,13 +80,17 @@ def prepare_shard(
 
     output_dir.mkdir(parents=True, exist_ok=True)
     manifest_path.parent.mkdir(parents=True, exist_ok=True)
-    extracted_names: list[str] = []
+    extracted_rows: list[tuple[str, str]] = []
     invalid_images = 0
 
     with tarfile.open(archive_path, mode="r:") as archive:
-        for member in archive:
-            if not member.isfile():
-                continue
+        members = [member for member in archive.getmembers() if member.isfile()]
+        sidecars: dict[str, tarfile.TarInfo] = {}
+        for member in members:
+            name = _safe_basename(member)
+            if Path(name).suffix.lower() in {".txt", ".json"}:
+                sidecars.setdefault(Path(name).stem, member)
+        for member in members:
             name = _safe_basename(member)
             if Path(name).suffix.lower() not in SUPPORTED_IMAGE_SUFFIXES:
                 continue
@@ -84,19 +108,20 @@ def prepare_shard(
                 invalid_images += 1
                 continue
 
-            extracted_names.append(name)
-            if len(extracted_names) >= max_images:
+            caption = _read_caption(archive, sidecars.get(Path(name).stem))
+            extracted_rows.append((name, caption))
+            if len(extracted_rows) >= max_images:
                 break
 
-    if not extracted_names:
+    if not extracted_rows:
         raise RuntimeError("The shard did not contain any valid supported images")
 
     with manifest_path.open("w", encoding="utf-8", newline="") as stream:
         writer = csv.writer(stream)
-        writer.writerow(["image"])
-        writer.writerows((name,) for name in extracted_names)
+        writer.writerow(["image", "caption"])
+        writer.writerows(extracted_rows)
 
-    return len(extracted_names), invalid_images
+    return len(extracted_rows), invalid_images
 
 
 def main() -> int:
