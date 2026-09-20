@@ -8,6 +8,7 @@ import logging
 import random
 import subprocess
 import time
+from dataclasses import replace
 from pathlib import Path
 from typing import Any
 
@@ -51,6 +52,19 @@ def seed_everything(seed: int) -> None:
 
 def score_tensor(scores: Any) -> torch.Tensor:
     return torch.stack((scores.preserve, scores.edit, scores.violation), dim=-1)
+
+
+def training_verifier_loss(model, values, modification, positive, cf_a, cf_b):
+    # Both the sigmoid network and BCE must run in float32, even under outer AMP.
+    with torch.autocast(device_type=positive.device.type, enabled=False):
+        values = replace(
+            values, preserve=values.preserve.float(), composed_edit=values.composed_edit.float()
+        )
+        scores = [
+            score_tensor(model.verify(candidate.float(), values, modification.float()))
+            for candidate in (positive, cf_a, cf_b)
+        ]
+        return verifier_loss(*scores)
 
 
 def main() -> int:
@@ -175,10 +189,9 @@ def main() -> int:
                         values.query, positive, cf_a, cf_b, margin=margin
                     )
                 if model.uses_verifier:
-                    p = score_tensor(model.verify(positive, values, modification))
-                    a = score_tensor(model.verify(cf_a, values, modification))
-                    b = score_tensor(model.verify(cf_b, values, modification))
-                    loss_ver = verifier_loss(p, a, b)
+                    loss_ver = training_verifier_loss(
+                        model, values, modification, positive, cf_a, cf_b
+                    )
                 total = loss_ret + lambda_fac * loss_fac + lambda_cf * loss_cf + lambda_ver * loss_ver
             if not torch.isfinite(total):
                 raise FloatingPointError(f"Non-finite loss at step {global_step + 1}")

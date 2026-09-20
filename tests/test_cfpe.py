@@ -1,16 +1,41 @@
 from __future__ import annotations
 
 import json
+import runpy
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
 import torch
+import pytest
 from PIL import Image
 from torchvision.transforms import ToTensor
 
 from pic2word.data import PseudoEditDataset, load_fashioniq_split
 from pic2word.models import CFPECIRModel
 from pic2word.training import counterfactual_margin_loss, factorization_loss
+
+
+@pytest.mark.skipif(not torch.cuda.is_available(), reason="CUDA is required for AMP regression")
+def test_b5_verifier_backward_under_cuda_amp() -> None:
+    train_script = Path(__file__).resolve().parents[1] / "scripts/train_cfpe.py"
+    loss_fn = runpy.run_path(str(train_script))["training_verifier_loss"]
+    torch.manual_seed(0)
+    model = CFPECIRModel(16, variant="B5", slots=4, hidden_dim=12).cuda()
+    optimizer = torch.optim.AdamW(model.parameters(), lr=1e-4)
+    scaler = torch.amp.GradScaler("cuda", init_scale=4096.0)
+    reference, text, positive, cf_a, cf_b = [torch.randn(4, 16, device="cuda") for _ in range(5)]
+    with torch.autocast("cuda", dtype=torch.float16):
+        values = model(reference, text)
+        loss = loss_fn(model, values, text, positive, cf_a, cf_b)
+    assert loss.dtype == torch.float32 and torch.isfinite(loss)
+    scaler.scale(loss).backward()
+    scaler.unscale_(optimizer)
+    for module in (model.verifier, model.factorizer, model.composer):
+        gradients = [p.grad for p in module.parameters() if p.grad is not None]
+        assert gradients and all(torch.isfinite(g).all() for g in gradients)
+        assert any(g.abs().sum() > 0 for g in gradients)
+    scaler.step(optimizer)
+    scaler.update()
 
 
 def test_cfpe_variants_and_reranking() -> None:

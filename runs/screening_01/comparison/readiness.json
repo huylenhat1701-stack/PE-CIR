@@ -1,0 +1,17 @@
+[
+  {
+    "variant": "B1",
+    "run_dir": "C:\\New folder (3)\\PE-CIR\\runs\\screening_01\\B1_screening_seed0",
+    "status": "Thiếu: best_checkpoint.pt, config.yaml"
+  },
+  {
+    "variant": "B4",
+    "run_dir": "C:\\New folder (3)\\PE-CIR\\runs\\screening_01\\B4_screening_seed0",
+    "status": "Thiếu: best_checkpoint.pt, config.yaml"
+  },
+  {
+    "variant": "B5",
+    "run_dir": "C:\\New folder (3)\\PE-CIR\\runs\\screening_01\\B5_screening_seed0",
+    "status": "Thiếu: best_checkpoint.pt, config.yaml"
+  }
+]
