@@ -1,0 +1,571 @@
+{
+  "reviewed_tuples": 40,
+  "image_positions_reviewed": 160,
+  "reject_current_tuple": 21,
+  "needs_further_review": 19,
+  "approved": 0,
+  "scope": "Manual model inspection of 384-pixel previews. First 20 targeted for structural flags, remaining 20 random from remaining audit rows; not representative of the full dataset.",
+  "not_completed": "Runbook-scale 500/200 audit is not completed. No error-rate estimate and no claim that other tuples are correct.",
+  "records": [
+    {
+      "sample": 1,
+      "split": "val",
+      "source_csv_line": "145",
+      "audit_csv_line": 666,
+      "decision": "reject_current_tuple",
+      "note": "CF-B is orange lilies, still flowers with the requested color; violates the claimed negative label.",
+      "images": {
+        "reference": "0007/000043301.jpg",
+        "positive": "0013/000079160.jpg",
+        "cf_a": "0016/000094790.jpg",
+        "cf_b": "0015/000088628.jpg"
+      }
+    },
+    {
+      "sample": 2,
+      "split": "val",
+      "source_csv_line": "403",
+      "audit_csv_line": 777,
+      "decision": "reject_current_tuple",
+      "note": "CF-B is orange lilies, still flowers. Reference focuses on a person/dog in a field, unlike the positive close-up.",
+      "images": {
+        "reference": "0014/000081569.jpg",
+        "positive": "0013/000079160.jpg",
+        "cf_a": "0002/000013107.jpg",
+        "cf_b": "0015/000088628.jpg"
+      }
+    },
+    {
+      "sample": 3,
+      "split": "train",
+      "source_csv_line": "4528",
+      "audit_csv_line": 33,
+      "decision": "reject_current_tuple",
+      "note": "Positive is a human eye, while reference and CF-A are iris flowers: object sense is not preserved.",
+      "images": {
+        "reference": "0015/000089430.jpg",
+        "positive": "0006/000035953.jpg",
+        "cf_a": "0018/000108144.jpg",
+        "cf_b": "0003/000022708.jpg"
+      }
+    },
+    {
+      "sample": 4,
+      "split": "train",
+      "source_csv_line": "2225",
+      "audit_csv_line": 293,
+      "decision": "reject_current_tuple",
+      "note": "Positive is a green cactus in a brown pot, not a brown flower.",
+      "images": {
+        "reference": "0019/000110580.jpg",
+        "positive": "0011/000066563.jpg",
+        "cf_a": "0014/000085971.jpg",
+        "cf_b": "0004/000026922.jpg"
+      }
+    },
+    {
+      "sample": 5,
+      "split": "val",
+      "source_csv_line": "245",
+      "audit_csv_line": 848,
+      "decision": "reject_current_tuple",
+      "note": "CF-B is pink roses, which are flowers with the requested color. Positive is an illustration with small decorative flowers.",
+      "images": {
+        "reference": "0006/000040030.jpg",
+        "positive": "0013/000080230.jpg",
+        "cf_a": "0006/000038443.jpg",
+        "cf_b": "0009/000055432.jpg"
+      }
+    },
+    {
+      "sample": 6,
+      "split": "val",
+      "source_csv_line": "225",
+      "audit_csv_line": 893,
+      "decision": "reject_current_tuple",
+      "note": "CF-B is orange lilies, still flowers. Reference is a flower tattoo, positive is a real flower.",
+      "images": {
+        "reference": "0018/000108135.jpg",
+        "positive": "0013/000079160.jpg",
+        "cf_a": "0002/000016944.jpg",
+        "cf_b": "0015/000088628.jpg"
+      }
+    },
+    {
+      "sample": 7,
+      "split": "train",
+      "source_csv_line": "944",
+      "audit_csv_line": 270,
+      "decision": "reject_current_tuple",
+      "note": "CF-B depicts black roses and thus still satisfies generic black flower; reference/positive also change photo to illustration.",
+      "images": {
+        "reference": "0000/000004740.jpg",
+        "positive": "0007/000040459.jpg",
+        "cf_a": "0015/000086593.jpg",
+        "cf_b": "0011/000067678.jpg"
+      }
+    },
+    {
+      "sample": 8,
+      "split": "train",
+      "source_csv_line": "385",
+      "audit_csv_line": 221,
+      "decision": "reject_current_tuple",
+      "note": "Positive is a green cactus in a brown pot, not a brown flower.",
+      "images": {
+        "reference": "0007/000044024.jpg",
+        "positive": "0011/000066563.jpg",
+        "cf_a": "0008/000049607.jpg",
+        "cf_b": "0003/000022669.jpg"
+      }
+    },
+    {
+      "sample": 9,
+      "split": "val",
+      "source_csv_line": "144",
+      "audit_csv_line": 726,
+      "decision": "reject_current_tuple",
+      "note": "CF-B is orange lilies, still flowers. Red/orange distinctions are also ambiguous in these thumbnails.",
+      "images": {
+        "reference": "0011/000066296.jpg",
+        "positive": "0013/000079160.jpg",
+        "cf_a": "0014/000081676.jpg",
+        "cf_b": "0015/000088628.jpg"
+      }
+    },
+    {
+      "sample": 10,
+      "split": "train",
+      "source_csv_line": "3753",
+      "audit_csv_line": 190,
+      "decision": "reject_current_tuple",
+      "note": "Positive is a green cactus in a brown pot, not a brown flower.",
+      "images": {
+        "reference": "0006/000036187.jpg",
+        "positive": "0011/000066563.jpg",
+        "cf_a": "0010/000059797.jpg",
+        "cf_b": "0013/000077607.jpg"
+      }
+    },
+    {
+      "sample": 11,
+      "split": "val",
+      "source_csv_line": "517",
+      "audit_csv_line": 799,
+      "decision": "reject_current_tuple",
+      "note": "CF-B is pink roses, still flowers. Positive additionally contains presentation-template graphics.",
+      "images": {
+        "reference": "0003/000019048.jpg",
+        "positive": "0009/000054039.jpg",
+        "cf_a": "0016/000095223.jpg",
+        "cf_b": "0009/000055432.jpg"
+      }
+    },
+    {
+      "sample": 12,
+      "split": "train",
+      "source_csv_line": "4656",
+      "audit_csv_line": 216,
+      "decision": "reject_current_tuple",
+      "note": "Positive is a cactus in a brown pot, not a brown flower; CF-B contains eggs, not the named chicken.",
+      "images": {
+        "reference": "0013/000079298.jpg",
+        "positive": "0011/000066563.jpg",
+        "cf_a": "0015/000091988.jpg",
+        "cf_b": "0018/000108532.jpg"
+      }
+    },
+    {
+      "sample": 13,
+      "split": "train",
+      "source_csv_line": "1221",
+      "audit_csv_line": 412,
+      "decision": "reject_current_tuple",
+      "note": "Positive is a cactus in a brown pot. Reference/CF-A include wedding scenery and a dog as prominent additional content.",
+      "images": {
+        "reference": "0004/000024921.jpg",
+        "positive": "0011/000066563.jpg",
+        "cf_a": "0015/000086962.jpg",
+        "cf_b": "0003/000022669.jpg"
+      }
+    },
+    {
+      "sample": 14,
+      "split": "train",
+      "source_csv_line": "1546",
+      "audit_csv_line": 131,
+      "decision": "reject_current_tuple",
+      "note": "CF-B is an orange rose, still a flower with the target color; styles also differ.",
+      "images": {
+        "reference": "0017/000100120.jpg",
+        "positive": "0003/000020103.jpg",
+        "cf_a": "0011/000066302.jpg",
+        "cf_b": "0008/000049967.jpg"
+      }
+    },
+    {
+      "sample": 15,
+      "split": "val",
+      "source_csv_line": "394",
+      "audit_csv_line": 846,
+      "decision": "reject_current_tuple",
+      "note": "CF-B visibly contains yellow lilies, so wrong-object claim is not supported.",
+      "images": {
+        "reference": "0006/000039253.jpg",
+        "positive": "0000/000005354.jpg",
+        "cf_a": "0005/000029017.jpg",
+        "cf_b": "0001/000009149.jpg"
+      }
+    },
+    {
+      "sample": 16,
+      "split": "train",
+      "source_csv_line": "895",
+      "audit_csv_line": 61,
+      "decision": "reject_current_tuple",
+      "note": "CF-B depicts black roses and thus still satisfies generic black flower; positive changes photographic scene to pattern.",
+      "images": {
+        "reference": "0002/000013288.jpg",
+        "positive": "0014/000083786.jpg",
+        "cf_a": "0018/000107595.jpg",
+        "cf_b": "0011/000067678.jpg"
+      }
+    },
+    {
+      "sample": 17,
+      "split": "val",
+      "source_csv_line": "399",
+      "audit_csv_line": 911,
+      "decision": "reject_current_tuple",
+      "note": "CF-B contains white roses, still flowers; monochrome photo further complicates color verification.",
+      "images": {
+        "reference": "0005/000029017.jpg",
+        "positive": "0016/000094790.jpg",
+        "cf_a": "0004/000025473.jpg",
+        "cf_b": "0014/000085490.jpg"
+      }
+    },
+    {
+      "sample": 18,
+      "split": "train",
+      "source_csv_line": "4154",
+      "audit_csv_line": 434,
+      "decision": "reject_current_tuple",
+      "note": "Positive is a cactus in a brown pot, not a brown flower. Orchid pattern in reference is also lost.",
+      "images": {
+        "reference": "0017/000101873.jpg",
+        "positive": "0011/000066563.jpg",
+        "cf_a": "0019/000112003.jpg",
+        "cf_b": "0013/000080102.jpg"
+      }
+    },
+    {
+      "sample": 19,
+      "split": "train",
+      "source_csv_line": "2623",
+      "audit_csv_line": 58,
+      "decision": "needs_further_review",
+      "note": "Reference is a cartoon, positive is a real ginger kitten; CF-B caption refers to tree lights and image focuses on ornaments. Requires relabeling at image level.",
+      "images": {
+        "reference": "0000/000003637.jpg",
+        "positive": "0016/000095420.jpg",
+        "cf_a": "0014/000081711.jpg",
+        "cf_b": "0006/000038906.jpg"
+      }
+    },
+    {
+      "sample": 20,
+      "split": "train",
+      "source_csv_line": "2055",
+      "audit_csv_line": 174,
+      "decision": "reject_current_tuple",
+      "note": "Positive is a cactus in a brown pot, not a brown flower.",
+      "images": {
+        "reference": "0009/000057558.jpg",
+        "positive": "0011/000066563.jpg",
+        "cf_a": "0004/000023861.jpg",
+        "cf_b": "0005/000031708.jpg"
+      }
+    },
+    {
+      "sample": 21,
+      "split": "val",
+      "source_csv_line": "532",
+      "audit_csv_line": 953,
+      "decision": "reject_current_tuple",
+      "note": "Plate conflates dish/cutting board, metal surface and directional signs. These do not preserve the same object sense.",
+      "images": {
+        "reference": "0002/000015396.jpg",
+        "positive": "0005/000029085.jpg",
+        "cf_a": "0003/000019323.jpg",
+        "cf_b": "0010/000060189.jpg"
+      }
+    },
+    {
+      "sample": 22,
+      "split": "val",
+      "source_csv_line": "30",
+      "audit_csv_line": 559,
+      "decision": "needs_further_review",
+      "note": "Jacket types appear caption-compatible, but wearer, composition and collage style change; leather cannot be verified confidently from thumbnail alone.",
+      "images": {
+        "reference": "0009/000056144.jpg",
+        "positive": "0007/000043413.jpg",
+        "cf_a": "0005/000029381.jpg",
+        "cf_b": "0009/000052350.jpg"
+      }
+    },
+    {
+      "sample": 23,
+      "split": "val",
+      "source_csv_line": "207",
+      "audit_csv_line": 738,
+      "decision": "needs_further_review",
+      "note": "Illustration, painting and photo are mixed; the claimed yellow house is not clearly established in the CF-B thumbnail.",
+      "images": {
+        "reference": "0011/000063483.jpg",
+        "positive": "0011/000069064.jpg",
+        "cf_a": "0011/000068127.jpg",
+        "cf_b": "0008/000048002.jpg"
+      }
+    },
+    {
+      "sample": 24,
+      "split": "val",
+      "source_csv_line": "543",
+      "audit_csv_line": 849,
+      "decision": "needs_further_review",
+      "note": "Door material task may be plausible, but actual material and preservation beyond object type need original-resolution inspection.",
+      "images": {
+        "reference": "0002/000017085.jpg",
+        "positive": "0010/000060189.jpg",
+        "cf_a": "0007/000044473.jpg",
+        "cf_b": "0009/000052233.jpg"
+      }
+    },
+    {
+      "sample": 25,
+      "split": "val",
+      "source_csv_line": "550",
+      "audit_csv_line": 630,
+      "decision": "needs_further_review",
+      "note": "Reference cat appears tan/orange tabby rather than clearly gray; positive contains multiple cats. Color labels require review.",
+      "images": {
+        "reference": "0014/000083365.jpg",
+        "positive": "0006/000036570.jpg",
+        "cf_a": "0019/000110954.jpg",
+        "cf_b": "0001/000011232.jpg"
+      }
+    },
+    {
+      "sample": 26,
+      "split": "val",
+      "source_csv_line": "303",
+      "audit_csv_line": 945,
+      "decision": "needs_further_review",
+      "note": "CF-A is a cartoon doctor rather than a comparable photographic coat scene; all other visual content also changes.",
+      "images": {
+        "reference": "0006/000035281.jpg",
+        "positive": "0006/000035926.jpg",
+        "cf_a": "0015/000088804.jpg",
+        "cf_b": "0012/000069674.jpg"
+      }
+    },
+    {
+      "sample": 27,
+      "split": "train",
+      "source_csv_line": "3574",
+      "audit_csv_line": 156,
+      "decision": "needs_further_review",
+      "note": "Positive purple cat is a cartoon while reference and CF-A are real cats. Object-type-only labels do not verify preservation of style.",
+      "images": {
+        "reference": "0007/000045224.jpg",
+        "positive": "0004/000028531.jpg",
+        "cf_a": "0006/000036322.jpg",
+        "cf_b": "0002/000013443.jpg"
+      }
+    },
+    {
+      "sample": 28,
+      "split": "train",
+      "source_csv_line": "1020",
+      "audit_csv_line": 329,
+      "decision": "needs_further_review",
+      "note": "Red means ginger fur here, not literal red; pose/background change and CF-B shirt is not the main visual mass. Requires an explicit color convention.",
+      "images": {
+        "reference": "0000/000001819.jpg",
+        "positive": "0007/000045224.jpg",
+        "cf_a": "0002/000012535.jpg",
+        "cf_b": "0015/000087041.jpg"
+      }
+    },
+    {
+      "sample": 29,
+      "split": "train",
+      "source_csv_line": "676",
+      "audit_csv_line": 106,
+      "decision": "needs_further_review",
+      "note": "Materials are caption-compatible but objects are repurposed planters versus industrial bottles; material and preservation need closer review.",
+      "images": {
+        "reference": "0001/000006413.jpg",
+        "positive": "0017/000102670.jpg",
+        "cf_a": "0002/000011805.jpg",
+        "cf_b": "0017/000103463.jpg"
+      }
+    },
+    {
+      "sample": 30,
+      "split": "val",
+      "source_csv_line": "519",
+      "audit_csv_line": 763,
+      "decision": "needs_further_review",
+      "note": "Brown/black bear labels may encode species as well as color; CF-B is an illustration. Requires scope-specific review.",
+      "images": {
+        "reference": "0013/000079921.jpg",
+        "positive": "0012/000069674.jpg",
+        "cf_a": "0015/000089979.jpg",
+        "cf_b": "0012/000071024.jpg"
+      }
+    },
+    {
+      "sample": 31,
+      "split": "train",
+      "source_csv_line": "1508",
+      "audit_csv_line": 80,
+      "decision": "needs_further_review",
+      "note": "Positive shirt appears dark burgundy/black under lighting; cut, wearer and context change. Do not approve color solely from caption.",
+      "images": {
+        "reference": "0018/000106443.jpg",
+        "positive": "0004/000025142.jpg",
+        "cf_a": "0016/000095111.jpg",
+        "cf_b": "0003/000017516.jpg"
+      }
+    },
+    {
+      "sample": 32,
+      "split": "val",
+      "source_csv_line": "514",
+      "audit_csv_line": 942,
+      "decision": "needs_further_review",
+      "note": "Worn adult dress, product child dress and cartoon fairy are mixed. Only a broad garment category is preserved.",
+      "images": {
+        "reference": "0002/000013227.jpg",
+        "positive": "0010/000062004.jpg",
+        "cf_a": "0014/000082494.jpg",
+        "cf_b": "0009/000055432.jpg"
+      }
+    },
+    {
+      "sample": 33,
+      "split": "val",
+      "source_csv_line": "67",
+      "audit_csv_line": 890,
+      "decision": "needs_further_review",
+      "note": "Broad flower/color labels appear compatible at thumbnail level, but species, arrangement and scene are not preserved; no general CIR approval.",
+      "images": {
+        "reference": "0011/000066296.jpg",
+        "positive": "0000/000005354.jpg",
+        "cf_a": "0006/000039253.jpg",
+        "cf_b": "0003/000020077.jpg"
+      }
+    },
+    {
+      "sample": 34,
+      "split": "val",
+      "source_csv_line": "323",
+      "audit_csv_line": 715,
+      "decision": "needs_further_review",
+      "note": "Jacket category is plausible; positive is an outfit collage and CF-B runway boots require closer material inspection.",
+      "images": {
+        "reference": "0005/000029381.jpg",
+        "positive": "0007/000043413.jpg",
+        "cf_a": "0010/000060470.jpg",
+        "cf_b": "0015/000088814.jpg"
+      }
+    },
+    {
+      "sample": 35,
+      "split": "train",
+      "source_csv_line": "2376",
+      "audit_csv_line": 350,
+      "decision": "needs_further_review",
+      "note": "Reference foreground pink tulip and purple background flowers make the edited subject ambiguous.",
+      "images": {
+        "reference": "0010/000058757.jpg",
+        "positive": "0017/000099293.jpg",
+        "cf_a": "0018/000108880.jpg",
+        "cf_b": "0006/000036870.jpg"
+      }
+    },
+    {
+      "sample": 36,
+      "split": "train",
+      "source_csv_line": "4665",
+      "audit_csv_line": 497,
+      "decision": "reject_current_tuple",
+      "note": "Positive visibly resembles a shallow wooden bowl of seeds, not a vase. The caption object label is unreliable.",
+      "images": {
+        "reference": "0001/000010231.jpg",
+        "positive": "0012/000072124.jpg",
+        "cf_a": "0008/000049930.jpg",
+        "cf_b": "0002/000016646.jpg"
+      }
+    },
+    {
+      "sample": 37,
+      "split": "val",
+      "source_csv_line": "137",
+      "audit_csv_line": 587,
+      "decision": "needs_further_review",
+      "note": "Rendered white door, real black doors and conceptual door image are mixed. Object type alone does not preserve scene/style.",
+      "images": {
+        "reference": "0006/000039870.jpg",
+        "positive": "0011/000066848.jpg",
+        "cf_a": "0011/000065183.jpg",
+        "cf_b": "0017/000098709.jpg"
+      }
+    },
+    {
+      "sample": 38,
+      "split": "train",
+      "source_csv_line": "946",
+      "audit_csv_line": 108,
+      "decision": "needs_further_review",
+      "note": "Reference is monochrome; material is inferred largely from captions, with large scene and style changes.",
+      "images": {
+        "reference": "0018/000104979.jpg",
+        "positive": "0001/000007980.jpg",
+        "cf_a": "0014/000082684.jpg",
+        "cf_b": "0007/000042229.jpg"
+      }
+    },
+    {
+      "sample": 39,
+      "split": "train",
+      "source_csv_line": "3757",
+      "audit_csv_line": 374,
+      "decision": "needs_further_review",
+      "note": "Ball conflates Christmas ornament, toy ball and red-white illustrated football. CF-B building color is not clearly yellow in the crop.",
+      "images": {
+        "reference": "0014/000084693.jpg",
+        "positive": "0002/000016053.jpg",
+        "cf_a": "0018/000109109.jpg",
+        "cf_b": "0007/000045026.jpg"
+      }
+    },
+    {
+      "sample": 40,
+      "split": "train",
+      "source_csv_line": "3370",
+      "audit_csv_line": 458,
+      "decision": "needs_further_review",
+      "note": "CF-B includes pink rose-like decoration around the plate as well as cookies. Absence of the preserved object cannot be established; scenes also change.",
+      "images": {
+        "reference": "0006/000039002.jpg",
+        "positive": "0005/000033059.jpg",
+        "cf_a": "0003/000020054.jpg",
+        "cf_b": "0008/000047235.jpg"
+      }
+    }
+  ]
+}

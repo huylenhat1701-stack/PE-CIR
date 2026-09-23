@@ -47,30 +47,32 @@ def main() -> int:
     if args.index.is_file():
         index = CandidateIndex.load(args.index)
     else:
-        index = build_candidate_index(backbone, dataset.candidate_paths, batch_size=args.index_batch_size)
+        index = build_candidate_index(backbone, dataset.candidate_paths, batch_size=args.index_batch_size, progress=lambda n, total: print(f"Indexed {n}/{total}", flush=True) if n % 512 == 0 or n == total else None)
         index.save(args.index)
     if set(index.paths) != {path.resolve() for path in dataset.candidate_paths}:
         raise ValueError("Candidate index does not match CIRR; delete it and rebuild")
     path_to_id = {path.resolve(): key for key, path in dataset.image_paths.items()}
     rankings: list[list[str]] = []
     group_rankings: list[list[str]] = []
+    stage1_rankings = []
     targets: list[str] = []
     predictions: list[dict[str, object]] = []
     constraints: list[dict[str, object]] = []
     for number, query in enumerate(dataset.queries, start=1):
         results = search_cfpe(
             model, backbone, index, dataset.path_for(query.reference_id), query.caption,
-            top_k=args.top_k, return_k=args.top_k,
+            top_k=args.top_k, return_k=len(index.paths),
         )
         ranking = [path_to_id[item.path] for item in results]
         group_ids = set(query.group_members)
         group = [item for item in ranking if item in group_ids and item != query.reference_id]
+        stage1_rankings.append([path_to_id[item.path] for item in sorted(results, key=lambda item: item.stage1_score, reverse=True)])
         rankings.append(ranking)
         group_rankings.append(group[:3])
         targets.append(query.target_id)
         predictions.append({
             "pair_id": query.pair_id, "reference_id": query.reference_id,
-            "target_id": query.target_id, "caption": query.caption, "ranking": ranking,
+            "target_id": query.target_id, "caption": query.caption, "ranking": ranking[:args.top_k], "group_ranking": group,
         })
         constraints.append({
             "pair_id": query.pair_id,
@@ -78,16 +80,18 @@ def main() -> int:
                 "image_id": path_to_id[item.path], "stage1_score": item.stage1_score,
                 "final_score": item.final_score, "p_P": item.preserve_probability,
                 "p_E": item.edit_probability, "p_V": item.violation_probability,
-            } for item in results],
+            } for item in results[:args.top_k]],
         })
         if number == 1 or number % 100 == 0 or number == len(dataset.queries):
             print(f"Evaluated {number}/{len(dataset.queries)}")
     metrics = {
         "dataset": "CIRR", "variant": checkpoint["variant"], "query_count": len(targets),
         "top_k_rerank": args.top_k if model.uses_verifier else None,
+        "stage1_global_recall": recall_at_k(stage1_rankings, targets, (1, 5, 10, 50)),
         "global_recall": recall_at_k(rankings, targets, (1, 5, 10, 50)),
         "group_recall": recall_at_k(group_rankings, targets, (1, 2, 3)),
-        "officially_comparable": True,
+        "split": "val",
+        "group_protocol": "Filter full gallery after global Top-K reranking; preserve Stage-1 tail",
     }
     run_dir = args.run_dir.resolve()
     run_dir.mkdir(parents=True, exist_ok=True)

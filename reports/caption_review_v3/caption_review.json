@@ -1,0 +1,3807 @@
+{
+  "source": "C:\\New folder (3)\\PE-CIR\\output\\manual_audit_v3.csv",
+  "source_sha256": "4c4bc8674f5f15e5a892bb24b52a8fd7a4c82089e0738bc9020f9936f325a3c6",
+  "audit_rows": 1000,
+  "rows_by_split": {
+    "train": 500,
+    "val": 500
+  },
+  "attributes_by_split": {
+    "train": {
+      "material": 115,
+      "color": 374,
+      "pattern": 11
+    },
+    "val": {
+      "color": 371,
+      "material": 128,
+      "pattern": 1
+    }
+  },
+  "flagged_rows": 110,
+  "flagged_rows_by_split": {
+    "train": 61,
+    "val": 49
+  },
+  "flags_by_split": {
+    "train": {
+      "other_noun_compound_needs_review": 5,
+      "possible_media_mismatch": 42,
+      "flower_compound": 13,
+      "iris_word_sense": 1,
+      "cf_b_flower_subtype_needs_review": 5
+    },
+    "val": {
+      "possible_media_mismatch": 37,
+      "cf_b_flower_subtype_needs_review": 12
+    }
+  },
+  "visual_audit_completed": false,
+  "limitations": [
+    "Automated caption screening of all audit rows; not manual visual approval.",
+    "Flags overlap and are not measured label error rates. Unflagged rows are not approved.",
+    "The audit has equal train/validation samples, not the same proportions as the full dataset."
+  ],
+  "flagged_examples": [
+    {
+      "audit_csv_line": 7,
+      "split": "train",
+      "source_csv_line": "3982",
+      "flags": [
+        [
+          "other_noun_compound_needs_review",
+          "cf_a"
+        ],
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "3982",
+        "reference": "0008/000048276.jpg",
+        "positive": "0002/000011876.jpg",
+        "cf_a": "0006/000038906.jpg",
+        "cf_b": "0014/000084629.jpg",
+        "modification": "change the color of the tree from red to black",
+        "attribute_type": "color",
+        "before": "red",
+        "after": "black",
+        "object": "tree",
+        "preserved_attributes": "{\"object\": \"tree\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "solitary red tree in a field",
+        "positive_caption": "vector hand drawn typography poster with black tree with white lines and stars .",
+        "cf_a_caption": "a cute wooden christmas bear in a santa outfit beside a bright red tree light on a traditional pine tree",
+        "cf_b_caption": "the hands of a man typing on black laptop",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 8,
+      "split": "train",
+      "source_csv_line": "3319",
+      "flags": [
+        [
+          "flower_compound",
+          "positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "3319",
+        "reference": "0012/000071925.jpg",
+        "positive": "0011/000066563.jpg",
+        "cf_a": "0018/000105974.jpg",
+        "cf_b": "0010/000062332.jpg",
+        "modification": "change the color of the flower from yellow to brown",
+        "attribute_type": "color",
+        "before": "yellow",
+        "after": "brown",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "model wears an intricate black cocktail dress with a yellow flower embroidered into the front",
+        "positive_caption": "green cactus in a brown flower pot , close up , white background , isolated",
+        "cf_a_caption": "cute little kitten sitting in a basket near yellow flowers",
+        "cf_b_caption": "brown bear trying to catch a fish .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 19,
+      "split": "train",
+      "source_csv_line": "2054",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "2054",
+        "reference": "0011/000068527.jpg",
+        "positive": "0006/000039986.jpg",
+        "cf_a": "0010/000057874.jpg",
+        "cf_b": "0014/000082892.jpg",
+        "modification": "change the color of the dress from red to brown",
+        "attribute_type": "color",
+        "before": "red",
+        "after": "brown",
+        "object": "dress",
+        "preserved_attributes": "{\"object\": \"dress\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "lady in red : girlfriend looked fabulous in a plunging floor length red dress",
+        "positive_caption": "short haired girl in a long brown dress isolated vector illustration on white background",
+        "cf_a_caption": "girl in red dress on the branch",
+        "cf_b_caption": "brown bear in the fog",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 24,
+      "split": "train",
+      "source_csv_line": "606",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "606",
+        "reference": "0008/000050901.jpg",
+        "positive": "0014/000081300.jpg",
+        "cf_a": "0005/000029905.jpg",
+        "cf_b": "0015/000089334.jpg",
+        "modification": "change the color of the cat from white to orange",
+        "attribute_type": "color",
+        "before": "white",
+        "after": "orange",
+        "object": "cat",
+        "preserved_attributes": "{\"object\": \"cat\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "vector white cat with a red bow .",
+        "positive_caption": "sleeping orange cat in a basket",
+        "cf_a_caption": "this would be funny except i cant help but think of what the poor white cat had to endure to get all that cheap makeup off its face .",
+        "cf_b_caption": "different colored chalk in the orange cup",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 26,
+      "split": "train",
+      "source_csv_line": "3869",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "3869",
+        "reference": "0007/000041963.jpg",
+        "positive": "0000/000004394.jpg",
+        "cf_a": "0007/000044890.jpg",
+        "cf_b": "0004/000028531.jpg",
+        "modification": "change the color of the flower from pink to purple",
+        "attribute_type": "color",
+        "before": "pink",
+        "after": "purple",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "seamless pattern with pink flowers on a white background .",
+        "positive_caption": "the tree with the purple flowers .",
+        "cf_a_caption": "mobile smart phone in female hands with a pink manicure on the background of pink flower and girl in a white t - shirt",
+        "cf_b_caption": "illustration of an adorable purple cat on a white background",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 33,
+      "split": "train",
+      "source_csv_line": "4528",
+      "flags": [
+        [
+          "iris_word_sense",
+          "tuple"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "4528",
+        "reference": "0015/000089430.jpg",
+        "positive": "0006/000035953.jpg",
+        "cf_a": "0018/000108144.jpg",
+        "cf_b": "0003/000022708.jpg",
+        "modification": "change the color of the iris from purple to green",
+        "attribute_type": "color",
+        "before": "purple",
+        "after": "green",
+        "object": "iris",
+        "preserved_attributes": "{\"object\": \"iris\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "the delicate beauty of a deep purple iris shines in late afternoon light .",
+        "positive_caption": "the eye with green iris royalty - free",
+        "cf_a_caption": "so simple - purple iris in water with a floating candle",
+        "cf_b_caption": "business woman hands in a green blouse sitting at a desk in an office and holds out business card",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 58,
+      "split": "train",
+      "source_csv_line": "2623",
+      "flags": [
+        [
+          "other_noun_compound_needs_review",
+          "cf_b"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "2623",
+        "reference": "0000/000003637.jpg",
+        "positive": "0016/000095420.jpg",
+        "cf_a": "0014/000081711.jpg",
+        "cf_b": "0006/000038906.jpg",
+        "modification": "change the color of the cat from black to red",
+        "attribute_type": "color",
+        "before": "black",
+        "after": "red",
+        "object": "cat",
+        "preserved_attributes": "{\"object\": \"cat\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "black kitten jumping out from a halloween pumpkin .",
+        "positive_caption": "the evolution of a red cat",
+        "cf_a_caption": "stray black cat against a stone wall",
+        "cf_b_caption": "a cute wooden christmas bear in a santa outfit beside a bright red tree light on a traditional pine tree",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 59,
+      "split": "train",
+      "source_csv_line": "4163",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "4163",
+        "reference": "0011/000066933.jpg",
+        "positive": "0003/000019829.jpg",
+        "cf_a": "0005/000028942.jpg",
+        "cf_b": "0008/000051718.jpg",
+        "modification": "change the color of the bear from black to brown",
+        "attribute_type": "color",
+        "before": "black",
+        "after": "brown",
+        "object": "bear",
+        "preserved_attributes": "{\"object\": \"bear\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "a black bear walks through dense vegetation .",
+        "positive_caption": "illustration of the playful brown bears on a white background",
+        "cf_a_caption": "black bear in the trees",
+        "cf_b_caption": "a girl on beautiful brown horse jumping high picture",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 61,
+      "split": "train",
+      "source_csv_line": "895",
+      "flags": [
+        [
+          "cf_b_flower_subtype_needs_review",
+          "cf_b"
+        ],
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "895",
+        "reference": "0002/000013288.jpg",
+        "positive": "0014/000083786.jpg",
+        "cf_a": "0018/000107595.jpg",
+        "cf_b": "0011/000067678.jpg",
+        "modification": "change the color of the flower from yellow to black",
+        "attribute_type": "color",
+        "before": "yellow",
+        "after": "black",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "ground squirrel on log with yellow flowers and grass",
+        "positive_caption": "seamless pattern with black flowers on a white background -- stock vector #",
+        "cf_a_caption": "wild yellow flowers on the top of a cliff overlooking the coast",
+        "cf_b_caption": "seamless monochrome pattern with black roses on a white background .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 62,
+      "split": "train",
+      "source_csv_line": "2471",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "2471",
+        "reference": "0015/000086962.jpg",
+        "positive": "0015/000086661.jpg",
+        "cf_a": "0005/000032050.jpg",
+        "cf_b": "0011/000066395.jpg",
+        "modification": "change the color of the flower from pink to blue",
+        "attribute_type": "color",
+        "before": "pink",
+        "after": "blue",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "animal , male lying on a bench in front of pink flowers",
+        "positive_caption": "seamless pattern of spring blue flowers on a white background .",
+        "cf_a_caption": "holiday background with pink flowers and a gift card .",
+        "cf_b_caption": "hand taking strawberry out of the blue plates",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 63,
+      "split": "train",
+      "source_csv_line": "4517",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "4517",
+        "reference": "0006/000037219.jpg",
+        "positive": "0013/000080539.jpg",
+        "cf_a": "0017/000101366.jpg",
+        "cf_b": "0002/000015796.jpg",
+        "modification": "change the color of the plate from white to blue",
+        "attribute_type": "color",
+        "before": "white",
+        "after": "blue",
+        "object": "plate",
+        "preserved_attributes": "{\"object\": \"plate\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "vector of dollar sign in the eyes on white plate with spoon and fork on blue background vector",
+        "positive_caption": "package of chocolate chip cookies beside a blue plate with a single cookie on it",
+        "cf_a_caption": "food on a white plate .",
+        "cf_b_caption": "serious and pensive blue cat sitting on a porch of a house and looking somewhere",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 64,
+      "split": "train",
+      "source_csv_line": "2386",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "2386",
+        "reference": "0004/000025750.jpg",
+        "positive": "0018/000104398.jpg",
+        "cf_a": "0004/000026181.jpg",
+        "cf_b": "0019/000112731.jpg",
+        "modification": "change the color of the bird from blue to orange",
+        "attribute_type": "color",
+        "before": "blue",
+        "after": "orange",
+        "object": "bird",
+        "preserved_attributes": "{\"object\": \"bird\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "biological species the beautiful blue bird with red tail isolated on white background",
+        "positive_caption": "an illustration of an orange bird over a teal and white background .",
+        "cf_a_caption": "a blue bird stands on a small rock next to a puddle .",
+        "cf_b_caption": "forward aerial view of an orange trees field .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 68,
+      "split": "train",
+      "source_csv_line": "4428",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "4428",
+        "reference": "0016/000093512.jpg",
+        "positive": "0000/000002914.jpg",
+        "cf_a": "0015/000089756.jpg",
+        "cf_b": "0006/000035132.jpg",
+        "modification": "change the color of the lily from white to yellow",
+        "attribute_type": "color",
+        "before": "white",
+        "after": "yellow",
+        "object": "lily",
+        "preserved_attributes": "{\"object\": \"lily\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "white lily on a white background , vector illustration royalty free stock vectors",
+        "positive_caption": "a field of wild flowers of yellow lilies",
+        "cf_a_caption": "a flower of white lilies",
+        "cf_b_caption": "pug in a yellow sweater",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 70,
+      "split": "train",
+      "source_csv_line": "4484",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "4484",
+        "reference": "0009/000057452.jpg",
+        "positive": "0014/000081851.jpg",
+        "cf_a": "0008/000048542.jpg",
+        "cf_b": "0017/000098932.jpg",
+        "modification": "change the material of the plate from metal to wooden",
+        "attribute_type": "material",
+        "before": "metal",
+        "after": "wooden",
+        "object": "plate",
+        "preserved_attributes": "{\"object\": \"plate\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "a cartoon doing a chef 's perfect sign with his hand and holding a covered metal plate of food",
+        "positive_caption": "caramel apple waffle cake recipe - waffle cake on a wooden plate with whipped cream and apples on top .",
+        "cf_a_caption": "abstract texture in an old , hammered metal plate in close - up",
+        "cf_b_caption": "old broken wooden piano sitting in the corner of the room",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 77,
+      "split": "train",
+      "source_csv_line": "4717",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "4717",
+        "reference": "0006/000038344.jpg",
+        "positive": "0016/000093857.jpg",
+        "cf_a": "0006/000039027.jpg",
+        "cf_b": "0014/000084916.jpg",
+        "modification": "change the color of the flower from yellow to black",
+        "attribute_type": "color",
+        "before": "yellow",
+        "after": "black",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "yellow flower in the park",
+        "positive_caption": "seamless pattern with black flowers on a light background",
+        "cf_a_caption": "tulip fields in the yellow flowers",
+        "cf_b_caption": "a black dog runs through water on a cold day with a lighthouse on the horizon",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 91,
+      "split": "train",
+      "source_csv_line": "659",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "659",
+        "reference": "0005/000030550.jpg",
+        "positive": "0004/000028531.jpg",
+        "cf_a": "0016/000093033.jpg",
+        "cf_b": "0013/000079298.jpg",
+        "modification": "change the color of the cat from black to purple",
+        "attribute_type": "color",
+        "before": "black",
+        "after": "purple",
+        "object": "cat",
+        "preserved_attributes": "{\"object\": \"cat\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "black cat walks in the courtyard of the house",
+        "positive_caption": "illustration of an adorable purple cat on a white background",
+        "cf_a_caption": "black cat walking on a wall",
+        "cf_b_caption": "neon purple flower on a dark background .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 98,
+      "split": "train",
+      "source_csv_line": "1764",
+      "flags": [
+        [
+          "flower_compound",
+          "positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "1764",
+        "reference": "0005/000029813.jpg",
+        "positive": "0011/000066563.jpg",
+        "cf_a": "0017/000098248.jpg",
+        "cf_b": "0006/000039986.jpg",
+        "modification": "change the color of the flower from purple to brown",
+        "attribute_type": "color",
+        "before": "purple",
+        "after": "brown",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "big purple flowers with high mountains in the background",
+        "positive_caption": "green cactus in a brown flower pot , close up , white background , isolated",
+        "cf_a_caption": "i would do purple flowers instead and add a ton of candles !",
+        "cf_b_caption": "short haired girl in a long brown dress isolated vector illustration on white background",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 107,
+      "split": "train",
+      "source_csv_line": "2658",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "2658",
+        "reference": "0017/000103204.jpg",
+        "positive": "0004/000028531.jpg",
+        "cf_a": "0015/000091690.jpg",
+        "cf_b": "0002/000013443.jpg",
+        "modification": "change the color of the cat from black to purple",
+        "attribute_type": "color",
+        "before": "black",
+        "after": "purple",
+        "object": "cat",
+        "preserved_attributes": "{\"object\": \"cat\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "black cat and a cup of tea .",
+        "positive_caption": "illustration of an adorable purple cat on a white background",
+        "cf_a_caption": "black cat on a white background",
+        "cf_b_caption": "purple lily in a pond",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 127,
+      "split": "train",
+      "source_csv_line": "4378",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "4378",
+        "reference": "0011/000068402.jpg",
+        "positive": "0016/000093857.jpg",
+        "cf_a": "0011/000065936.jpg",
+        "cf_b": "0012/000072547.jpg",
+        "modification": "change the color of the flower from purple to black",
+        "attribute_type": "color",
+        "before": "purple",
+        "after": "black",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "magnolia purple flowers in a summer sunny day against a clear blue sky",
+        "positive_caption": "seamless pattern with black flowers on a light background",
+        "cf_a_caption": "a macro image of a cute honeybee on a purple flower",
+        "cf_b_caption": "cute edgy nail art : black nails that range from elegant to edgy",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 131,
+      "split": "train",
+      "source_csv_line": "1546",
+      "flags": [
+        [
+          "cf_b_flower_subtype_needs_review",
+          "cf_b"
+        ],
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "1546",
+        "reference": "0017/000100120.jpg",
+        "positive": "0003/000020103.jpg",
+        "cf_a": "0011/000066302.jpg",
+        "cf_b": "0008/000049967.jpg",
+        "modification": "change the color of the flower from black to orange",
+        "attribute_type": "color",
+        "before": "black",
+        "after": "orange",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "seamless pattern with black flowers on a white background",
+        "positive_caption": "orange flowers of an azalea",
+        "cf_a_caption": "add an unique touch of color and drama to your garden by adding black flowers and plants .",
+        "cf_b_caption": "biological genus , orange : roses are the symbol of love ; here in a delicate orange tone",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 134,
+      "split": "train",
+      "source_csv_line": "3206",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "3206",
+        "reference": "0006/000037127.jpg",
+        "positive": "0005/000029491.jpg",
+        "cf_a": "0005/000033679.jpg",
+        "cf_b": "0012/000073583.jpg",
+        "modification": "change the color of the horse from white to red",
+        "attribute_type": "color",
+        "before": "white",
+        "after": "red",
+        "object": "horse",
+        "preserved_attributes": "{\"object\": \"horse\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "picture taken above and behind a white horse running in fresh snow , mane and tail flying",
+        "positive_caption": "illustration of a red horse jumping with lightning bolt set inside crest shield on isolated white background done",
+        "cf_a_caption": "woman on a rearing white horse",
+        "cf_b_caption": "red car sitting in a flooded car park",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 137,
+      "split": "train",
+      "source_csv_line": "952",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "952",
+        "reference": "0006/000035484.jpg",
+        "positive": "0001/000007713.jpg",
+        "cf_a": "0015/000090859.jpg",
+        "cf_b": "0008/000049374.jpg",
+        "modification": "change the color of the flower from yellow to white",
+        "attribute_type": "color",
+        "before": "yellow",
+        "after": "white",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "wild yellow flowers in the countryside",
+        "positive_caption": "seamless pattern with outline white flowers on the pastel background .",
+        "cf_a_caption": "bee on the yellow flower in the summer",
+        "cf_b_caption": "a front view of a regular cleared white shelf with brackets on a white brick wall",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 155,
+      "split": "train",
+      "source_csv_line": "2871",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "2871",
+        "reference": "0019/000110250.jpg",
+        "positive": "0011/000065472.jpg",
+        "cf_a": "0007/000044774.jpg",
+        "cf_b": "0000/000004353.jpg",
+        "modification": "change the color of the flower from pink to blue",
+        "attribute_type": "color",
+        "before": "pink",
+        "after": "blue",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "vector seamless pattern with pink flowers and green leaves on a dark purple background .",
+        "positive_caption": "women picking blue flowers in a field",
+        "cf_a_caption": "branch with pink flowers on a blue background",
+        "cf_b_caption": "blue butterflies on a light yellow background",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 156,
+      "split": "train",
+      "source_csv_line": "3574",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "3574",
+        "reference": "0007/000045224.jpg",
+        "positive": "0004/000028531.jpg",
+        "cf_a": "0006/000036322.jpg",
+        "cf_b": "0002/000013443.jpg",
+        "modification": "change the color of the cat from red to purple",
+        "attribute_type": "color",
+        "before": "red",
+        "after": "purple",
+        "object": "cat",
+        "preserved_attributes": "{\"object\": \"cat\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "red cat basking in the sun",
+        "positive_caption": "illustration of an adorable purple cat on a white background",
+        "cf_a_caption": "cute little red kitten peeking out from under the soft warm blue blanket",
+        "cf_b_caption": "purple lily in a pond",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 159,
+      "split": "train",
+      "source_csv_line": "3828",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "3828",
+        "reference": "0015/000087928.jpg",
+        "positive": "0005/000029491.jpg",
+        "cf_a": "0008/000051597.jpg",
+        "cf_b": "0013/000079846.jpg",
+        "modification": "change the color of the horse from gray to red",
+        "attribute_type": "color",
+        "before": "gray",
+        "after": "red",
+        "object": "horse",
+        "preserved_attributes": "{\"object\": \"horse\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "grey horse looking over the gate",
+        "positive_caption": "illustration of a red horse jumping with lightning bolt set inside crest shield on isolated white background done",
+        "cf_a_caption": "a girl on a gray horse in the forest",
+        "cf_b_caption": "pretty girl in red dress sitting on the windowsill , drinking tea and using smartphone .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 167,
+      "split": "train",
+      "source_csv_line": "1389",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "1389",
+        "reference": "0002/000015411.jpg",
+        "positive": "0003/000021280.jpg",
+        "cf_a": "0010/000062353.jpg",
+        "cf_b": "0002/000016338.jpg",
+        "modification": "change the color of the scarf from red to blue",
+        "attribute_type": "color",
+        "before": "red",
+        "after": "blue",
+        "object": "scarf",
+        "preserved_attributes": "{\"object\": \"scarf\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "a lovely cartoon brown owl in a red scarf sits on a drowsy crescent moon against the background of the night sky with stars",
+        "positive_caption": "cute frozen cat in blue scarf .",
+        "cf_a_caption": "illustration of a snowman wearing a red scarf",
+        "cf_b_caption": "girl with blue coat in downtown in the evening .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 172,
+      "split": "train",
+      "source_csv_line": "2806",
+      "flags": [
+        [
+          "cf_b_flower_subtype_needs_review",
+          "cf_b"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "2806",
+        "reference": "0000/000005226.jpg",
+        "positive": "0012/000074326.jpg",
+        "cf_a": "0003/000020896.jpg",
+        "cf_b": "0018/000108144.jpg",
+        "modification": "change the color of the flower from pink to purple",
+        "attribute_type": "color",
+        "before": "pink",
+        "after": "purple",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "pink flower on a white background for design , floral background",
+        "positive_caption": "pan across some earth to a bunch of pretty little purple flowers",
+        "cf_a_caption": "collage of beautiful pink flowers taken outdoors in natural setting .",
+        "cf_b_caption": "so simple - purple iris in water with a floating candle",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 174,
+      "split": "train",
+      "source_csv_line": "2055",
+      "flags": [
+        [
+          "flower_compound",
+          "positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "2055",
+        "reference": "0009/000057558.jpg",
+        "positive": "0011/000066563.jpg",
+        "cf_a": "0004/000023861.jpg",
+        "cf_b": "0005/000031708.jpg",
+        "modification": "change the color of the flower from yellow to brown",
+        "attribute_type": "color",
+        "before": "yellow",
+        "after": "brown",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "toad on a yellow flower .",
+        "positive_caption": "green cactus in a brown flower pot , close up , white background , isolated",
+        "cf_a_caption": "acrylic painting of yellow flowers in a field",
+        "cf_b_caption": "beautiful big brown horse standing behind the fence asking for food",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 175,
+      "split": "train",
+      "source_csv_line": "962",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "962",
+        "reference": "0014/000084968.jpg",
+        "positive": "0013/000080102.jpg",
+        "cf_a": "0018/000103836.jpg",
+        "cf_b": "0012/000073130.jpg",
+        "modification": "change the color of the rabbit from gray to brown",
+        "attribute_type": "color",
+        "before": "gray",
+        "after": "brown",
+        "object": "rabbit",
+        "preserved_attributes": "{\"object\": \"rabbit\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "grey rabbit isolated on a white background .",
+        "positive_caption": "cute cartoon brown rabbits on a white background .",
+        "cf_a_caption": "slow motion : close - up a small gray rabbit eats corn and wheat in his cage",
+        "cf_b_caption": "wooden brown table decorated with christmas stuff and garlands .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 190,
+      "split": "train",
+      "source_csv_line": "3753",
+      "flags": [
+        [
+          "flower_compound",
+          "positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "3753",
+        "reference": "0006/000036187.jpg",
+        "positive": "0011/000066563.jpg",
+        "cf_a": "0010/000059797.jpg",
+        "cf_b": "0013/000077607.jpg",
+        "modification": "change the color of the flower from red to brown",
+        "attribute_type": "color",
+        "before": "red",
+        "after": "brown",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "red flowers on a tree",
+        "positive_caption": "green cactus in a brown flower pot , close up , white background , isolated",
+        "cf_a_caption": "drop of water dripping from a red flower .",
+        "cf_b_caption": "ways to wear brown pants from a wardrobe in browns , cream and teal",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 195,
+      "split": "train",
+      "source_csv_line": "2302",
+      "flags": [
+        [
+          "flower_compound",
+          "positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "2302",
+        "reference": "0014/000086305.jpg",
+        "positive": "0011/000066563.jpg",
+        "cf_a": "0000/000001497.jpg",
+        "cf_b": "0015/000090605.jpg",
+        "modification": "change the color of the flower from white to brown",
+        "attribute_type": "color",
+        "before": "white",
+        "after": "brown",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "white flowers swinging on the wind .",
+        "positive_caption": "green cactus in a brown flower pot , close up , white background , isolated",
+        "cf_a_caption": "black tulle and a slightly wild bouquet of white flowers and trailing greenery .",
+        "cf_b_caption": "orange colored doors for the dark brown cabinets will be customized .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 196,
+      "split": "train",
+      "source_csv_line": "1106",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "1106",
+        "reference": "0001/000006837.jpg",
+        "positive": "0008/000051597.jpg",
+        "cf_a": "0012/000073330.jpg",
+        "cf_b": "0016/000092218.jpg",
+        "modification": "change the color of the horse from black to gray",
+        "attribute_type": "color",
+        "before": "black",
+        "after": "gray",
+        "object": "horse",
+        "preserved_attributes": "{\"object\": \"horse\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "illustration black horse for the creative use in graphic design",
+        "positive_caption": "a girl on a gray horse in the forest",
+        "cf_a_caption": "digitally rendered image of a black horse on white background .",
+        "cf_b_caption": "a gray cat with eye closed and tongue sticking out",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 206,
+      "split": "train",
+      "source_csv_line": "3396",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "3396",
+        "reference": "0014/000084632.jpg",
+        "positive": "0000/000002495.jpg",
+        "cf_a": "0017/000098091.jpg",
+        "cf_b": "0018/000104568.jpg",
+        "modification": "change the color of the desk from white to black",
+        "attribute_type": "color",
+        "before": "white",
+        "after": "black",
+        "object": "desk",
+        "preserved_attributes": "{\"object\": \"desk\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "funny laughing baby girl drawing with colorful pencils at a white desk next to a big window into the garden",
+        "positive_caption": "slow motion video of pouring shelled walnuts on a black desk",
+        "cf_a_caption": "plus on a white desk",
+        "cf_b_caption": "young kid and nanny , wild feral black goats .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 216,
+      "split": "train",
+      "source_csv_line": "4656",
+      "flags": [
+        [
+          "flower_compound",
+          "positive"
+        ],
+        [
+          "other_noun_compound_needs_review",
+          "cf_b"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "4656",
+        "reference": "0013/000079298.jpg",
+        "positive": "0011/000066563.jpg",
+        "cf_a": "0015/000091988.jpg",
+        "cf_b": "0018/000108532.jpg",
+        "modification": "change the color of the flower from purple to brown",
+        "attribute_type": "color",
+        "before": "purple",
+        "after": "brown",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "neon purple flower on a dark background .",
+        "positive_caption": "green cactus in a brown flower pot , close up , white background , isolated",
+        "cf_a_caption": "lavender fields in the countryside , rows of purple flowers on a sunny day",
+        "cf_b_caption": "brown chicken eggs in the tray .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 221,
+      "split": "train",
+      "source_csv_line": "385",
+      "flags": [
+        [
+          "flower_compound",
+          "positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "385",
+        "reference": "0007/000044024.jpg",
+        "positive": "0011/000066563.jpg",
+        "cf_a": "0008/000049607.jpg",
+        "cf_b": "0003/000022669.jpg",
+        "modification": "change the color of the flower from pink to brown",
+        "attribute_type": "color",
+        "before": "pink",
+        "after": "brown",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "pink flower of biological species in the forest",
+        "positive_caption": "green cactus in a brown flower pot , close up , white background , isolated",
+        "cf_a_caption": "field of pink flowers in the garden : shot",
+        "cf_b_caption": "young brown bear walking free in the forest looking for food",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 227,
+      "split": "train",
+      "source_csv_line": "3658",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "3658",
+        "reference": "0013/000076200.jpg",
+        "positive": "0015/000086707.jpg",
+        "cf_a": "0005/000032270.jpg",
+        "cf_b": "0004/000028592.jpg",
+        "modification": "change the color of the umbrella from yellow to red",
+        "attribute_type": "color",
+        "before": "yellow",
+        "after": "red",
+        "object": "umbrella",
+        "preserved_attributes": "{\"object\": \"umbrella\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "tourist attraction in the waterfront with traditional yellow umbrellas .",
+        "positive_caption": "funny cartoon illustration of sad birds and a caterpillar hiding under their red umbrellas .",
+        "cf_a_caption": "yellow umbrella and golden fallen leaves on a sidewalk in the city",
+        "cf_b_caption": "person with his red deer .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 228,
+      "split": "train",
+      "source_csv_line": "4323",
+      "flags": [
+        [
+          "flower_compound",
+          "positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "4323",
+        "reference": "0015/000091988.jpg",
+        "positive": "0001/000007862.jpg",
+        "cf_a": "0013/000079298.jpg",
+        "cf_b": "0002/000012907.jpg",
+        "modification": "change the color of the flower from purple to black",
+        "attribute_type": "color",
+        "before": "purple",
+        "after": "black",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "lavender fields in the countryside , rows of purple flowers on a sunny day",
+        "positive_caption": "make it easy crafts : i used a black flower pot and eliminated the step of filling in the lines .",
+        "cf_a_caption": "neon purple flower on a dark background .",
+        "cf_b_caption": "modern collection of black vases with various flowers .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 241,
+      "split": "train",
+      "source_csv_line": "685",
+      "flags": [
+        [
+          "other_noun_compound_needs_review",
+          "cf_b"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "685",
+        "reference": "0010/000059703.jpg",
+        "positive": "0008/000046380.jpg",
+        "cf_a": "0011/000065188.jpg",
+        "cf_b": "0018/000108532.jpg",
+        "modification": "change the color of the house from white to brown",
+        "attribute_type": "color",
+        "before": "white",
+        "after": "brown",
+        "object": "house",
+        "preserved_attributes": "{\"object\": \"house\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "the white house and gardens in winter snow",
+        "positive_caption": "picture of brown small house in the forest",
+        "cf_a_caption": "the helicopter few many important missions as far away as the pyramids but none more famous than thefinal flight when the family left the white house after resignation , bound for airport .",
+        "cf_b_caption": "brown chicken eggs in the tray .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 260,
+      "split": "train",
+      "source_csv_line": "3251",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "3251",
+        "reference": "0018/000105974.jpg",
+        "positive": "0004/000028586.jpg",
+        "cf_a": "0008/000048571.jpg",
+        "cf_b": "0008/000049374.jpg",
+        "modification": "change the color of the flower from yellow to white",
+        "attribute_type": "color",
+        "before": "yellow",
+        "after": "white",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "cute little kitten sitting in a basket near yellow flowers",
+        "positive_caption": "seamless pattern with white flowers on a blue background .",
+        "cf_a_caption": "vibrant yellow flowers along a hiking trail between villages",
+        "cf_b_caption": "a front view of a regular cleared white shelf with brackets on a white brick wall",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 261,
+      "split": "train",
+      "source_csv_line": "668",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "668",
+        "reference": "0015/000090488.jpg",
+        "positive": "0009/000052377.jpg",
+        "cf_a": "0009/000053714.jpg",
+        "cf_b": "0011/000064018.jpg",
+        "modification": "change the color of the scarf from red to purple",
+        "attribute_type": "color",
+        "before": "red",
+        "after": "purple",
+        "object": "scarf",
+        "preserved_attributes": "{\"object\": \"scarf\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "a small long - haired dog with a red scarf running through the snow",
+        "positive_caption": "illustration of a purple scarf on a white background",
+        "cf_a_caption": "young girl with a bandaged red scarf isolated vector illustration on white background illustration",
+        "cf_b_caption": "illustration of the purple mushrooms on a white background",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 270,
+      "split": "train",
+      "source_csv_line": "944",
+      "flags": [
+        [
+          "cf_b_flower_subtype_needs_review",
+          "cf_b"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "944",
+        "reference": "0000/000004740.jpg",
+        "positive": "0007/000040459.jpg",
+        "cf_a": "0015/000086593.jpg",
+        "cf_b": "0011/000067678.jpg",
+        "modification": "change the color of the flower from red to black",
+        "attribute_type": "color",
+        "before": "red",
+        "after": "black",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "creative decoration for the new year with a big red flower , pine cones and balls",
+        "positive_caption": "black flowers on a white background - in the style of hand - painted",
+        "cf_a_caption": "table decorated for the wedding party covered with beautiful red flowers",
+        "cf_b_caption": "seamless monochrome pattern with black roses on a white background .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 291,
+      "split": "train",
+      "source_csv_line": "1136",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "1136",
+        "reference": "0003/000022310.jpg",
+        "positive": "0003/000018107.jpg",
+        "cf_a": "0010/000062460.jpg",
+        "cf_b": "0006/000035132.jpg",
+        "modification": "change the color of the flower from blue to yellow",
+        "attribute_type": "color",
+        "before": "blue",
+        "after": "yellow",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "floral seamless pattern , blue flowers on a white background , watercolor , ink .",
+        "positive_caption": "bee on a yellow flower .",
+        "cf_a_caption": "little girl picking blue flowers in a field",
+        "cf_b_caption": "pug in a yellow sweater",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 293,
+      "split": "train",
+      "source_csv_line": "2225",
+      "flags": [
+        [
+          "flower_compound",
+          "positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "2225",
+        "reference": "0019/000110580.jpg",
+        "positive": "0011/000066563.jpg",
+        "cf_a": "0014/000085971.jpg",
+        "cf_b": "0004/000026922.jpg",
+        "modification": "change the color of the flower from yellow to brown",
+        "attribute_type": "color",
+        "before": "yellow",
+        "after": "brown",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "butterfly on a yellow flower",
+        "positive_caption": "green cactus in a brown flower pot , close up , white background , isolated",
+        "cf_a_caption": "yellow flower have fragrant in the morning everyday",
+        "cf_b_caption": "actor strolled through a city carrying a zip - embellished brown leather bag by actor .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 306,
+      "split": "train",
+      "source_csv_line": "3236",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "3236",
+        "reference": "0016/000097870.jpg",
+        "positive": "0006/000037458.jpg",
+        "cf_a": "0009/000054894.jpg",
+        "cf_b": "0015/000089430.jpg",
+        "modification": "change the color of the dress from black to purple",
+        "attribute_type": "color",
+        "before": "black",
+        "after": "purple",
+        "object": "dress",
+        "preserved_attributes": "{\"object\": \"dress\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "going for a stroll , actor poses in a little black dress",
+        "positive_caption": "vector illustration of a fashionable cat in a purple dress .",
+        "cf_a_caption": "little black dress on a hanger .",
+        "cf_b_caption": "the delicate beauty of a deep purple iris shines in late afternoon light .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 340,
+      "split": "train",
+      "source_csv_line": "541",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "541",
+        "reference": "0007/000042658.jpg",
+        "positive": "0010/000061821.jpg",
+        "cf_a": "0003/000020070.jpg",
+        "cf_b": "0019/000111264.jpg",
+        "modification": "change the color of the orange from green to black",
+        "attribute_type": "color",
+        "before": "green",
+        "after": "black",
+        "object": "orange",
+        "preserved_attributes": "{\"object\": \"orange\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "knitting seamless vector pattern with zigzag ornamental chains as a knitted fabric texture in green , orange and brown colors",
+        "positive_caption": "the sky and the clouds at sunset , beautiful black orange red",
+        "cf_a_caption": "green orange on the tree",
+        "cf_b_caption": "black ball of hilarious cuteness !",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 347,
+      "split": "train",
+      "source_csv_line": "3228",
+      "flags": [
+        [
+          "other_noun_compound_needs_review",
+          "cf_b"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "3228",
+        "reference": "0009/000055761.jpg",
+        "positive": "0003/000018857.jpg",
+        "cf_a": "0001/000007615.jpg",
+        "cf_b": "0018/000108532.jpg",
+        "modification": "change the color of the dress from red to brown",
+        "attribute_type": "color",
+        "before": "red",
+        "after": "brown",
+        "object": "dress",
+        "preserved_attributes": "{\"object\": \"dress\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "young girl in long red dress jumping into swimming pool in slow motion .",
+        "positive_caption": "business new way to wear my hair with that brown dress",
+        "cf_a_caption": "young man hiding a bouquet of flowers behind him is about to deliver a young woman in red dress",
+        "cf_b_caption": "brown chicken eggs in the tray .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 370,
+      "split": "train",
+      "source_csv_line": "1699",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "1699",
+        "reference": "0014/000084268.jpg",
+        "positive": "0006/000037458.jpg",
+        "cf_a": "0009/000053335.jpg",
+        "cf_b": "0013/000079834.jpg",
+        "modification": "change the color of the dress from white to purple",
+        "attribute_type": "color",
+        "before": "white",
+        "after": "purple",
+        "object": "dress",
+        "preserved_attributes": "{\"object\": \"dress\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "bride in luxurious white dress and groom in dark suit kissing in a field in setting sun on background of coniferous forest",
+        "positive_caption": "vector illustration of a fashionable cat in a purple dress .",
+        "cf_a_caption": "beautiful young woman wearing a white dress jumping with joy in the middle of a lavender field in bloom",
+        "cf_b_caption": "purple airplane at at the international",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 373,
+      "split": "train",
+      "source_csv_line": "1623",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "1623",
+        "reference": "0018/000106591.jpg",
+        "positive": "0015/000090620.jpg",
+        "cf_a": "0003/000022149.jpg",
+        "cf_b": "0000/000002752.jpg",
+        "modification": "change the color of the car from black to red",
+        "attribute_type": "color",
+        "before": "black",
+        "after": "red",
+        "object": "car",
+        "preserved_attributes": "{\"object\": \"car\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "black vintage car from the 20s as a taxi , illustration",
+        "positive_caption": "red car with christmas tree on the winter background .",
+        "cf_a_caption": "caucasian man is cleaning black car from snow during snowfall in the yard",
+        "cf_b_caption": "red pig in a backyard , digging in the snow",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 375,
+      "split": "train",
+      "source_csv_line": "3098",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "3098",
+        "reference": "0009/000057452.jpg",
+        "positive": "0011/000065833.jpg",
+        "cf_a": "0008/000048542.jpg",
+        "cf_b": "0003/000019075.jpg",
+        "modification": "change the material of the plate from metal to wooden",
+        "attribute_type": "material",
+        "before": "metal",
+        "after": "wooden",
+        "object": "plate",
+        "preserved_attributes": "{\"object\": \"plate\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "a cartoon doing a chef 's perfect sign with his hand and holding a covered metal plate of food",
+        "positive_caption": "a set of wooden plates .",
+        "cf_a_caption": "abstract texture in an old , hammered metal plate in close - up",
+        "cf_b_caption": "one of the many carved wooden doors",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 390,
+      "split": "train",
+      "source_csv_line": "1656",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "1656",
+        "reference": "0004/000028134.jpg",
+        "positive": "0004/000028531.jpg",
+        "cf_a": "0016/000093033.jpg",
+        "cf_b": "0011/000064018.jpg",
+        "modification": "change the color of the cat from black to purple",
+        "attribute_type": "color",
+        "before": "black",
+        "after": "purple",
+        "object": "cat",
+        "preserved_attributes": "{\"object\": \"cat\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "cute black kitten with a bandaged paw",
+        "positive_caption": "illustration of an adorable purple cat on a white background",
+        "cf_a_caption": "black cat walking on a wall",
+        "cf_b_caption": "illustration of the purple mushrooms on a white background",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 393,
+      "split": "train",
+      "source_csv_line": "2789",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "2789",
+        "reference": "0011/000068706.jpg",
+        "positive": "0010/000062753.jpg",
+        "cf_a": "0010/000060475.jpg",
+        "cf_b": "0012/000070245.jpg",
+        "modification": "change the color of the horse from white to brown",
+        "attribute_type": "color",
+        "before": "white",
+        "after": "brown",
+        "object": "horse",
+        "preserved_attributes": "{\"object\": \"horse\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "head close - up of a white horse in the paddock",
+        "positive_caption": "brown horse on a blue floral background seamless pattern .",
+        "cf_a_caption": "white horse walking on a path lined with palm trees along a lake shore",
+        "cf_b_caption": "close up on a super cute brown dog with brown eyes looking into camera",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 412,
+      "split": "train",
+      "source_csv_line": "1221",
+      "flags": [
+        [
+          "flower_compound",
+          "positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "1221",
+        "reference": "0004/000024921.jpg",
+        "positive": "0011/000066563.jpg",
+        "cf_a": "0015/000086962.jpg",
+        "cf_b": "0003/000022669.jpg",
+        "modification": "change the color of the flower from pink to brown",
+        "attribute_type": "color",
+        "before": "pink",
+        "after": "brown",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "wedding rings in white wooden box with pink flowers on the table .",
+        "positive_caption": "green cactus in a brown flower pot , close up , white background , isolated",
+        "cf_a_caption": "animal , male lying on a bench in front of pink flowers",
+        "cf_b_caption": "young brown bear walking free in the forest looking for food",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 415,
+      "split": "train",
+      "source_csv_line": "4138",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "4138",
+        "reference": "0019/000110390.jpg",
+        "positive": "0003/000022310.jpg",
+        "cf_a": "0002/000013288.jpg",
+        "cf_b": "0001/000011170.jpg",
+        "modification": "change the color of the flower from yellow to blue",
+        "attribute_type": "color",
+        "before": "yellow",
+        "after": "blue",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "young girl in a field of yellow flowers",
+        "positive_caption": "floral seamless pattern , blue flowers on a white background , watercolor , ink .",
+        "cf_a_caption": "ground squirrel on log with yellow flowers and grass",
+        "cf_b_caption": "bright blue fish in the aquarium",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 426,
+      "split": "train",
+      "source_csv_line": "4388",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "4388",
+        "reference": "0006/000037458.jpg",
+        "positive": "0013/000080115.jpg",
+        "cf_a": "0013/000079596.jpg",
+        "cf_b": "0019/000115079.jpg",
+        "modification": "change the color of the dress from purple to green",
+        "attribute_type": "color",
+        "before": "purple",
+        "after": "green",
+        "object": "dress",
+        "preserved_attributes": "{\"object\": \"dress\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "vector illustration of a fashionable cat in a purple dress .",
+        "positive_caption": "pop artist in a green dress with her black hair cut into a short sleek chin - length bob",
+        "cf_a_caption": "baby in a purple dress",
+        "cf_b_caption": "a young girl with long brown hair in a green jacket is upstairs in the park , smiling",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 431,
+      "split": "train",
+      "source_csv_line": "169",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "169",
+        "reference": "0015/000091707.jpg",
+        "positive": "0013/000080102.jpg",
+        "cf_a": "0014/000084968.jpg",
+        "cf_b": "0015/000090605.jpg",
+        "modification": "change the color of the rabbit from gray to brown",
+        "attribute_type": "color",
+        "before": "gray",
+        "after": "brown",
+        "object": "rabbit",
+        "preserved_attributes": "{\"object\": \"rabbit\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "smiling grey rabbit with big ears waving hand .",
+        "positive_caption": "cute cartoon brown rabbits on a white background .",
+        "cf_a_caption": "grey rabbit isolated on a white background .",
+        "cf_b_caption": "orange colored doors for the dark brown cabinets will be customized .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 434,
+      "split": "train",
+      "source_csv_line": "4154",
+      "flags": [
+        [
+          "flower_compound",
+          "positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "4154",
+        "reference": "0017/000101873.jpg",
+        "positive": "0011/000066563.jpg",
+        "cf_a": "0019/000112003.jpg",
+        "cf_b": "0013/000080102.jpg",
+        "modification": "change the color of the flower from white to brown",
+        "attribute_type": "color",
+        "before": "white",
+        "after": "brown",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "orchid , white flower with dark purple spots , orchids",
+        "positive_caption": "green cactus in a brown flower pot , close up , white background , isolated",
+        "cf_a_caption": "nature : scene - white flowers in the wind",
+        "cf_b_caption": "cute cartoon brown rabbits on a white background .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 436,
+      "split": "train",
+      "source_csv_line": "2086",
+      "flags": [
+        [
+          "flower_compound",
+          "positive"
+        ],
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "2086",
+        "reference": "0004/000028586.jpg",
+        "positive": "0011/000066563.jpg",
+        "cf_a": "0014/000086305.jpg",
+        "cf_b": "0012/000073130.jpg",
+        "modification": "change the color of the flower from white to brown",
+        "attribute_type": "color",
+        "before": "white",
+        "after": "brown",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "seamless pattern with white flowers on a blue background .",
+        "positive_caption": "green cactus in a brown flower pot , close up , white background , isolated",
+        "cf_a_caption": "white flowers swinging on the wind .",
+        "cf_b_caption": "wooden brown table decorated with christmas stuff and garlands .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 468,
+      "split": "train",
+      "source_csv_line": "2655",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "2655",
+        "reference": "0004/000026966.jpg",
+        "positive": "0010/000058833.jpg",
+        "cf_a": "0017/000101440.jpg",
+        "cf_b": "0009/000056962.jpg",
+        "modification": "change the color of the bear from brown to black",
+        "attribute_type": "color",
+        "before": "brown",
+        "after": "black",
+        "object": "bear",
+        "preserved_attributes": "{\"object\": \"bear\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "vector cartoon image of a cute brown bear standing on paws and smiling on a white background .",
+        "positive_caption": "a large adult black bear standing in the sun panting due to the heat",
+        "cf_a_caption": "stare of a brown bear female , isolated on white background .",
+        "cf_b_caption": "the cover girl looked stunning in a black silk dress and matching cape",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 476,
+      "split": "train",
+      "source_csv_line": "494",
+      "flags": [
+        [
+          "cf_b_flower_subtype_needs_review",
+          "cf_b"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "494",
+        "reference": "0007/000044130.jpg",
+        "positive": "0003/000020896.jpg",
+        "cf_a": "0013/000079298.jpg",
+        "cf_b": "0000/000005252.jpg",
+        "modification": "change the color of the flower from purple to pink",
+        "attribute_type": "color",
+        "before": "purple",
+        "after": "pink",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "purple flowers come to life in the spring .",
+        "positive_caption": "collage of beautiful pink flowers taken outdoors in natural setting .",
+        "cf_a_caption": "neon purple flower on a dark background .",
+        "cf_b_caption": "hand drawn watercolor floral seamless pattern with tender pink roses in vector on the light blue background vector",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 485,
+      "split": "train",
+      "source_csv_line": "314",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "314",
+        "reference": "0003/000021369.jpg",
+        "positive": "0000/000004640.jpg",
+        "cf_a": "0015/000088436.jpg",
+        "cf_b": "0003/000022918.jpg",
+        "modification": "change the color of the rose from pink to white",
+        "attribute_type": "color",
+        "before": "pink",
+        "after": "white",
+        "object": "rose",
+        "preserved_attributes": "{\"object\": \"rose\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "seamless pattern with pink roses , leaves and branches on a black background .",
+        "positive_caption": "a boho chic and rustic upscale wedding we planned included floor length white linens and plenty of white roses , greenery and candlelight .",
+        "cf_a_caption": "open shelving in an all white vintage kitchen with hanging pots and pans and pastel pink roses .",
+        "cf_b_caption": "dreamy portrait of a young and beautiful girl in a white sweater at sunset with a pink cherry blossom",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 499,
+      "split": "train",
+      "source_csv_line": "1771",
+      "flags": [
+        [
+          "flower_compound",
+          "positive"
+        ]
+      ],
+      "row": {
+        "split": "train",
+        "source_csv_line": "1771",
+        "reference": "0007/000044774.jpg",
+        "positive": "0011/000066563.jpg",
+        "cf_a": "0004/000024921.jpg",
+        "cf_b": "0010/000062753.jpg",
+        "modification": "change the color of the flower from pink to brown",
+        "attribute_type": "color",
+        "before": "pink",
+        "after": "brown",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "branch with pink flowers on a blue background",
+        "positive_caption": "green cactus in a brown flower pot , close up , white background , isolated",
+        "cf_a_caption": "wedding rings in white wooden box with pink flowers on the table .",
+        "cf_b_caption": "brown horse on a blue floral background seamless pattern .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 515,
+      "split": "val",
+      "source_csv_line": "427",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "427",
+        "reference": "0017/000098594.jpg",
+        "positive": "0002/000011888.jpg",
+        "cf_a": "0002/000016698.jpg",
+        "cf_b": "0005/000031488.jpg",
+        "modification": "change the color of the apple from green to red",
+        "attribute_type": "color",
+        "before": "green",
+        "after": "red",
+        "object": "apple",
+        "preserved_attributes": "{\"object\": \"apple\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "drawing of a green apple with eyes , arms and legs .",
+        "positive_caption": "the word dream big against red apple in front of blackboard on books",
+        "cf_a_caption": "green apple standing on a wire shelf inside a small empty domestic fridge",
+        "cf_b_caption": "window in a red wooden house",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 516,
+      "split": "val",
+      "source_csv_line": "66",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "66",
+        "reference": "0016/000097500.jpg",
+        "positive": "0016/000096053.jpg",
+        "cf_a": "0003/000019052.jpg",
+        "cf_b": "0008/000047056.jpg",
+        "modification": "change the color of the cat from white to black",
+        "attribute_type": "color",
+        "before": "white",
+        "after": "black",
+        "object": "cat",
+        "preserved_attributes": "{\"object\": \"cat\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "fluffy white kitten laying on colorful orange , teal and yellow blankets stacked , paw over the side looking slightly",
+        "positive_caption": "an illustration of a black cat drinking a milkshake",
+        "cf_a_caption": "white cat in the night city",
+        "cf_b_caption": "used black table cloth & white duct tape for the road .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 518,
+      "split": "val",
+      "source_csv_line": "631",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "631",
+        "reference": "0011/000065339.jpg",
+        "positive": "0011/000064589.jpg",
+        "cf_a": "0015/000089196.jpg",
+        "cf_b": "0008/000047056.jpg",
+        "modification": "change the color of the bird from blue to black",
+        "attribute_type": "color",
+        "before": "blue",
+        "after": "black",
+        "object": "bird",
+        "preserved_attributes": "{\"object\": \"bird\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "a cartoon of a blue bird getting a worm",
+        "positive_caption": "black bird guarding twigs on the beach",
+        "cf_a_caption": "illustration of a funny blue bird in flight",
+        "cf_b_caption": "used black table cloth & white duct tape for the road .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 521,
+      "split": "val",
+      "source_csv_line": "459",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "459",
+        "reference": "0017/000101344.jpg",
+        "positive": "0019/000112982.jpg",
+        "cf_a": "0019/000111944.jpg",
+        "cf_b": "0015/000089196.jpg",
+        "modification": "change the color of the dress from black to blue",
+        "attribute_type": "color",
+        "before": "black",
+        "after": "blue",
+        "object": "dress",
+        "preserved_attributes": "{\"object\": \"dress\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "vector fashion illustration , women 's black dress on a hanger , hand drawn seamless geometric pattern , isolated elements for invitation card design",
+        "positive_caption": "model and person wearing a blue denim dress arriving",
+        "cf_a_caption": "film costumer designer working on a little black dress .",
+        "cf_b_caption": "illustration of a funny blue bird in flight",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 530,
+      "split": "val",
+      "source_csv_line": "74",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "74",
+        "reference": "0011/000063483.jpg",
+        "positive": "0011/000068010.jpg",
+        "cf_a": "0014/000082494.jpg",
+        "cf_b": "0019/000113984.jpg",
+        "modification": "change the color of the dress from red to black",
+        "attribute_type": "color",
+        "before": "red",
+        "after": "black",
+        "object": "dress",
+        "preserved_attributes": "{\"object\": \"dress\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "vector illustration of bald girl in a red dress",
+        "positive_caption": "the black dress with those blue ruffled thing for the skirt can really make heads turn .",
+        "cf_a_caption": "illustration of a fairy with a red dress beside the sleeping moon on a white background",
+        "cf_b_caption": "glitch - black backpack with a dog",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 544,
+      "split": "val",
+      "source_csv_line": "211",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "211",
+        "reference": "0003/000019052.jpg",
+        "positive": "0014/000084624.jpg",
+        "cf_a": "0016/000096869.jpg",
+        "cf_b": "0017/000097990.jpg",
+        "modification": "change the color of the cat from white to black",
+        "attribute_type": "color",
+        "before": "white",
+        "after": "black",
+        "object": "cat",
+        "preserved_attributes": "{\"object\": \"cat\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "white cat in the night city",
+        "positive_caption": "cute black cat on the roof , vector illustration vector",
+        "cf_a_caption": "cute adorable fluffy white kitten wearing black geeky glasses looking over the glasses slightly to viewers left",
+        "cf_b_caption": "a man in a black jacket and open collared shirt",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 552,
+      "split": "val",
+      "source_csv_line": "193",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "193",
+        "reference": "0014/000082494.jpg",
+        "positive": "0010/000062458.jpg",
+        "cf_a": "0011/000063483.jpg",
+        "cf_b": "0011/000065455.jpg",
+        "modification": "change the color of the dress from red to white",
+        "attribute_type": "color",
+        "before": "red",
+        "after": "white",
+        "object": "dress",
+        "preserved_attributes": "{\"object\": \"dress\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "illustration of a fairy with a red dress beside the sleeping moon on a white background",
+        "positive_caption": "person chose a delicate white dress for her final appearance at this year 's festival .",
+        "cf_a_caption": "vector illustration of bald girl in a red dress",
+        "cf_b_caption": "a white bowl with grilled vegetables divided up in sections before mixing together",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 553,
+      "split": "val",
+      "source_csv_line": "466",
+      "flags": [
+        [
+          "cf_b_flower_subtype_needs_review",
+          "cf_b"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "466",
+        "reference": "0017/000103166.jpg",
+        "positive": "0013/000079160.jpg",
+        "cf_a": "0014/000081676.jpg",
+        "cf_b": "0015/000088628.jpg",
+        "modification": "change the color of the flower from red to orange",
+        "attribute_type": "color",
+        "before": "red",
+        "after": "orange",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "baby breaking some petals of a red flower",
+        "positive_caption": "azalea has deep orange flowers -- darker in bud .",
+        "cf_a_caption": "red flowers contrast with green leaves in a way that always reminds me .",
+        "cf_b_caption": "dance of the orange lilies",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 602,
+      "split": "val",
+      "source_csv_line": "457",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "457",
+        "reference": "0010/000057679.jpg",
+        "positive": "0010/000062004.jpg",
+        "cf_a": "0001/000010973.jpg",
+        "cf_b": "0000/000005278.jpg",
+        "modification": "change the color of the dress from blue to pink",
+        "attribute_type": "color",
+        "before": "blue",
+        "after": "pink",
+        "object": "dress",
+        "preserved_attributes": "{\"object\": \"dress\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "cartoon character cute woman wears a blue dress smiling with pink heart , waving her hand and show her handkerchief .",
+        "positive_caption": "any precious princess needs a perfect royal outfit , and this gorgeous pink dress would be it .",
+        "cf_a_caption": "portrait of a woman of the ethnic group in traditional colourful blue dress and black turban , village of person",
+        "cf_b_caption": "pink flowers of person climbing ornamental",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 613,
+      "split": "val",
+      "source_csv_line": "599",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "599",
+        "reference": "0015/000089196.jpg",
+        "positive": "0011/000064589.jpg",
+        "cf_a": "0011/000065339.jpg",
+        "cf_b": "0003/000021470.jpg",
+        "modification": "change the color of the bird from blue to black",
+        "attribute_type": "color",
+        "before": "blue",
+        "after": "black",
+        "object": "bird",
+        "preserved_attributes": "{\"object\": \"bird\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "illustration of a funny blue bird in flight",
+        "positive_caption": "black bird guarding twigs on the beach",
+        "cf_a_caption": "a cartoon of a blue bird getting a worm",
+        "cf_b_caption": "catwalk ready : actor looked trim and toned as she stepped out of her hotel on monday looking chic in a black leather skirt and grey cropped top , revealing her midriff",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 617,
+      "split": "val",
+      "source_csv_line": "113",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "113",
+        "reference": "0015/000089196.jpg",
+        "positive": "0009/000054296.jpg",
+        "cf_a": "0011/000065339.jpg",
+        "cf_b": "0006/000035151.jpg",
+        "modification": "change the color of the bird from blue to white",
+        "attribute_type": "color",
+        "before": "blue",
+        "after": "white",
+        "object": "bird",
+        "preserved_attributes": "{\"object\": \"bird\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "illustration of a funny blue bird in flight",
+        "positive_caption": "flying forward along wide rice field , white birds flying in the end",
+        "cf_a_caption": "a cartoon of a blue bird getting a worm",
+        "cf_b_caption": "white dog with a red balloon in the shape of heart",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 621,
+      "split": "val",
+      "source_csv_line": "458",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "458",
+        "reference": "0009/000054296.jpg",
+        "positive": "0011/000065339.jpg",
+        "cf_a": "0005/000030388.jpg",
+        "cf_b": "0018/000106244.jpg",
+        "modification": "change the color of the bird from white to blue",
+        "attribute_type": "color",
+        "before": "white",
+        "after": "blue",
+        "object": "bird",
+        "preserved_attributes": "{\"object\": \"bird\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "flying forward along wide rice field , white birds flying in the end",
+        "positive_caption": "a cartoon of a blue bird getting a worm",
+        "cf_a_caption": "i have always thought that stars turn into white birds in the morning light & sleep with their heads under their wings until the dusk begins to walk through the streets and on paths in the forest",
+        "cf_b_caption": "the blue elephant stands on the cloud and draws the sun",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 623,
+      "split": "val",
+      "source_csv_line": "530",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "530",
+        "reference": "0014/000082494.jpg",
+        "positive": "0018/000106354.jpg",
+        "cf_a": "0002/000013227.jpg",
+        "cf_b": "0012/000070113.jpg",
+        "modification": "change the color of the dress from red to white",
+        "attribute_type": "color",
+        "before": "red",
+        "after": "white",
+        "object": "dress",
+        "preserved_attributes": "{\"object\": \"dress\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "illustration of a fairy with a red dress beside the sleeping moon on a white background",
+        "positive_caption": "a woman in a white dress is walking along a field with wheat .",
+        "cf_a_caption": "the girl in a red dress comes to a balcony",
+        "cf_b_caption": "what goes with a short white skirt",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 666,
+      "split": "val",
+      "source_csv_line": "145",
+      "flags": [
+        [
+          "cf_b_flower_subtype_needs_review",
+          "cf_b"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "145",
+        "reference": "0007/000043301.jpg",
+        "positive": "0013/000079160.jpg",
+        "cf_a": "0016/000094790.jpg",
+        "cf_b": "0015/000088628.jpg",
+        "modification": "change the color of the flower from white to orange",
+        "attribute_type": "color",
+        "before": "white",
+        "after": "orange",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "white flower that fall on the floor .",
+        "positive_caption": "azalea has deep orange flowers -- darker in bud .",
+        "cf_a_caption": "image of white flowers on a green background",
+        "cf_b_caption": "dance of the orange lilies",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 668,
+      "split": "val",
+      "source_csv_line": "13",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "13",
+        "reference": "0003/000022436.jpg",
+        "positive": "0011/000063483.jpg",
+        "cf_a": "0018/000108327.jpg",
+        "cf_b": "0006/000034778.jpg",
+        "modification": "change the color of the dress from black to red",
+        "attribute_type": "color",
+        "before": "black",
+        "after": "red",
+        "object": "dress",
+        "preserved_attributes": "{\"object\": \"dress\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "elegant : person was wearing a plunging black dress for an evening out",
+        "positive_caption": "vector illustration of bald girl in a red dress",
+        "cf_a_caption": "another beautiful bride in a black dress !",
+        "cf_b_caption": "ship type sailing up river towards filming location where a red bus is crossing in front",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 687,
+      "split": "val",
+      "source_csv_line": "643",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "643",
+        "reference": "0005/000030388.jpg",
+        "positive": "0011/000065339.jpg",
+        "cf_a": "0009/000054296.jpg",
+        "cf_b": "0016/000096862.jpg",
+        "modification": "change the color of the bird from white to blue",
+        "attribute_type": "color",
+        "before": "white",
+        "after": "blue",
+        "object": "bird",
+        "preserved_attributes": "{\"object\": \"bird\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "i have always thought that stars turn into white birds in the morning light & sleep with their heads under their wings until the dusk begins to walk through the streets and on paths in the forest",
+        "positive_caption": "a cartoon of a blue bird getting a worm",
+        "cf_a_caption": "flying forward along wide rice field , white birds flying in the end",
+        "cf_b_caption": "seamless pattern of blue fish a white background",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 721,
+      "split": "val",
+      "source_csv_line": "483",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "483",
+        "reference": "0010/000057679.jpg",
+        "positive": "0003/000018506.jpg",
+        "cf_a": "0019/000112982.jpg",
+        "cf_b": "0011/000065183.jpg",
+        "modification": "change the color of the dress from blue to white",
+        "attribute_type": "color",
+        "before": "blue",
+        "after": "white",
+        "object": "dress",
+        "preserved_attributes": "{\"object\": \"dress\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "cartoon character cute woman wears a blue dress smiling with pink heart , waving her hand and show her handkerchief .",
+        "positive_caption": "person - i 'm pinning different shades of pink for you so you can see what they look like next to the white dress .",
+        "cf_a_caption": "model and person wearing a blue denim dress arriving",
+        "cf_b_caption": "girl before a white door in fear of the unknown",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 724,
+      "split": "val",
+      "source_csv_line": "400",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "400",
+        "reference": "0017/000101344.jpg",
+        "positive": "0002/000015863.jpg",
+        "cf_a": "0011/000068010.jpg",
+        "cf_b": "0019/000110055.jpg",
+        "modification": "change the color of the dress from black to yellow",
+        "attribute_type": "color",
+        "before": "black",
+        "after": "yellow",
+        "object": "dress",
+        "preserved_attributes": "{\"object\": \"dress\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "vector fashion illustration , women 's black dress on a hanger , hand drawn seamless geometric pattern , isolated elements for invitation card design",
+        "positive_caption": "was the best ; girl walking in yellow dress in front",
+        "cf_a_caption": "the black dress with those blue ruffled thing for the skirt can really make heads turn .",
+        "cf_b_caption": "the peak of fall color season yellow , orange and red maple trees dazzle the eye !",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 726,
+      "split": "val",
+      "source_csv_line": "144",
+      "flags": [
+        [
+          "cf_b_flower_subtype_needs_review",
+          "cf_b"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "144",
+        "reference": "0011/000066296.jpg",
+        "positive": "0013/000079160.jpg",
+        "cf_a": "0014/000081676.jpg",
+        "cf_b": "0015/000088628.jpg",
+        "modification": "change the color of the flower from red to orange",
+        "attribute_type": "color",
+        "before": "red",
+        "after": "orange",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "the red flowers of biological species and its lush green leaves adorn in february the gardens of person",
+        "positive_caption": "azalea has deep orange flowers -- darker in bud .",
+        "cf_a_caption": "red flowers contrast with green leaves in a way that always reminds me .",
+        "cf_b_caption": "dance of the orange lilies",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 738,
+      "split": "val",
+      "source_csv_line": "207",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "207",
+        "reference": "0011/000063483.jpg",
+        "positive": "0011/000069064.jpg",
+        "cf_a": "0011/000068127.jpg",
+        "cf_b": "0008/000048002.jpg",
+        "modification": "change the color of the dress from red to yellow",
+        "attribute_type": "color",
+        "before": "red",
+        "after": "yellow",
+        "object": "dress",
+        "preserved_attributes": "{\"object\": \"dress\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "vector illustration of bald girl in a red dress",
+        "positive_caption": "portrait of person in a yellow dress",
+        "cf_a_caption": "pretty woman in a long red dress explores beautiful forest",
+        "cf_b_caption": "yellow house on the beach",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 745,
+      "split": "val",
+      "source_csv_line": "460",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "460",
+        "reference": "0014/000084624.jpg",
+        "positive": "0014/000083365.jpg",
+        "cf_a": "0016/000096053.jpg",
+        "cf_b": "0016/000094252.jpg",
+        "modification": "change the color of the cat from black to gray",
+        "attribute_type": "color",
+        "before": "black",
+        "after": "gray",
+        "object": "cat",
+        "preserved_attributes": "{\"object\": \"cat\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "cute black cat on the roof , vector illustration vector",
+        "positive_caption": "gray cat at the island",
+        "cf_a_caption": "an illustration of a black cat drinking a milkshake",
+        "cf_b_caption": "grey wolf looking around some birch trees",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 746,
+      "split": "val",
+      "source_csv_line": "479",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "479",
+        "reference": "0018/000106354.jpg",
+        "positive": "0014/000082494.jpg",
+        "cf_a": "0012/000071914.jpg",
+        "cf_b": "0014/000081381.jpg",
+        "modification": "change the color of the dress from white to red",
+        "attribute_type": "color",
+        "before": "white",
+        "after": "red",
+        "object": "dress",
+        "preserved_attributes": "{\"object\": \"dress\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "a woman in a white dress is walking along a field with wheat .",
+        "positive_caption": "illustration of a fairy with a red dress beside the sleeping moon on a white background",
+        "cf_a_caption": "little girl in a white dress with butterfly wings behind the back to have fun at home",
+        "cf_b_caption": "dachshund in a red hat comes down the hillside on skis , illustration",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 757,
+      "split": "val",
+      "source_csv_line": "335",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "335",
+        "reference": "0011/000065339.jpg",
+        "positive": "0005/000030388.jpg",
+        "cf_a": "0015/000089196.jpg",
+        "cf_b": "0000/000005192.jpg",
+        "modification": "change the color of the bird from blue to white",
+        "attribute_type": "color",
+        "before": "blue",
+        "after": "white",
+        "object": "bird",
+        "preserved_attributes": "{\"object\": \"bird\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "a cartoon of a blue bird getting a worm",
+        "positive_caption": "i have always thought that stars turn into white birds in the morning light & sleep with their heads under their wings until the dusk begins to walk through the streets and on paths in the forest",
+        "cf_a_caption": "illustration of a funny blue bird in flight",
+        "cf_b_caption": "white horse in a field",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 777,
+      "split": "val",
+      "source_csv_line": "403",
+      "flags": [
+        [
+          "cf_b_flower_subtype_needs_review",
+          "cf_b"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "403",
+        "reference": "0014/000081569.jpg",
+        "positive": "0013/000079160.jpg",
+        "cf_a": "0002/000013107.jpg",
+        "cf_b": "0015/000088628.jpg",
+        "modification": "change the color of the flower from yellow to orange",
+        "attribute_type": "color",
+        "before": "yellow",
+        "after": "orange",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "man walking his dog through a field of yellow flowers",
+        "positive_caption": "azalea has deep orange flowers -- darker in bud .",
+        "cf_a_caption": "an attractive young man stands in aa sunny open field full of yellow flowers swaying in the wind looking into the camera",
+        "cf_b_caption": "dance of the orange lilies",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 790,
+      "split": "val",
+      "source_csv_line": "567",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "567",
+        "reference": "0009/000054296.jpg",
+        "positive": "0015/000089196.jpg",
+        "cf_a": "0005/000030388.jpg",
+        "cf_b": "0003/000017816.jpg",
+        "modification": "change the color of the bird from white to blue",
+        "attribute_type": "color",
+        "before": "white",
+        "after": "blue",
+        "object": "bird",
+        "preserved_attributes": "{\"object\": \"bird\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "flying forward along wide rice field , white birds flying in the end",
+        "positive_caption": "illustration of a funny blue bird in flight",
+        "cf_a_caption": "i have always thought that stars turn into white birds in the morning light & sleep with their heads under their wings until the dusk begins to walk through the streets and on paths in the forest",
+        "cf_b_caption": "a city with one of the old class blue trains late 60s early 70s .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 793,
+      "split": "val",
+      "source_csv_line": "551",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "551",
+        "reference": "0010/000057679.jpg",
+        "positive": "0003/000022436.jpg",
+        "cf_a": "0019/000112982.jpg",
+        "cf_b": "0004/000023817.jpg",
+        "modification": "change the color of the dress from blue to black",
+        "attribute_type": "color",
+        "before": "blue",
+        "after": "black",
+        "object": "dress",
+        "preserved_attributes": "{\"object\": \"dress\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "cartoon character cute woman wears a blue dress smiling with pink heart , waving her hand and show her handkerchief .",
+        "positive_caption": "elegant : person was wearing a plunging black dress for an evening out",
+        "cf_a_caption": "model and person wearing a blue denim dress arriving",
+        "cf_b_caption": "black cat walking on the sloppy street .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 796,
+      "split": "val",
+      "source_csv_line": "171",
+      "flags": [
+        [
+          "cf_b_flower_subtype_needs_review",
+          "cf_b"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "171",
+        "reference": "0017/000103166.jpg",
+        "positive": "0000/000005278.jpg",
+        "cf_a": "0006/000039253.jpg",
+        "cf_b": "0009/000055432.jpg",
+        "modification": "change the color of the flower from red to pink",
+        "attribute_type": "color",
+        "before": "red",
+        "after": "pink",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "baby breaking some petals of a red flower",
+        "positive_caption": "pink flowers of person climbing ornamental",
+        "cf_a_caption": "red flowers a carpet prepared for a wedding",
+        "cf_b_caption": "big bunch of cut light pink roses in a flower shop in the center",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 799,
+      "split": "val",
+      "source_csv_line": "517",
+      "flags": [
+        [
+          "cf_b_flower_subtype_needs_review",
+          "cf_b"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "517",
+        "reference": "0003/000019048.jpg",
+        "positive": "0009/000054039.jpg",
+        "cf_a": "0016/000095223.jpg",
+        "cf_b": "0009/000055432.jpg",
+        "modification": "change the color of the flower from purple to pink",
+        "attribute_type": "color",
+        "before": "purple",
+        "after": "pink",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "photo of small purple flowers",
+        "positive_caption": "powerpoint template displaying a pink flower blossoming with its reflection in the background",
+        "cf_a_caption": "purple flowers in the rooftop garden",
+        "cf_b_caption": "big bunch of cut light pink roses in a flower shop in the center",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 834,
+      "split": "val",
+      "source_csv_line": "46",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "46",
+        "reference": "0016/000096053.jpg",
+        "positive": "0017/000098034.jpg",
+        "cf_a": "0006/000036570.jpg",
+        "cf_b": "0018/000106244.jpg",
+        "modification": "change the color of the cat from black to blue",
+        "attribute_type": "color",
+        "before": "black",
+        "after": "blue",
+        "object": "cat",
+        "preserved_attributes": "{\"object\": \"cat\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "an illustration of a black cat drinking a milkshake",
+        "positive_caption": "sleepy russian blue cat in a striped yellow hammock",
+        "cf_a_caption": "a black cat sits on the belly near her cubs in the middle of the court .",
+        "cf_b_caption": "the blue elephant stands on the cloud and draws the sun",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 846,
+      "split": "val",
+      "source_csv_line": "394",
+      "flags": [
+        [
+          "cf_b_flower_subtype_needs_review",
+          "cf_b"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "394",
+        "reference": "0006/000039253.jpg",
+        "positive": "0000/000005354.jpg",
+        "cf_a": "0005/000029017.jpg",
+        "cf_b": "0001/000009149.jpg",
+        "modification": "change the color of the flower from red to yellow",
+        "attribute_type": "color",
+        "before": "red",
+        "after": "yellow",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "red flowers a carpet prepared for a wedding",
+        "positive_caption": "stock photo yellow flowers in close up on a black background",
+        "cf_a_caption": "a bunch of bright red flowers in a green backdrop",
+        "cf_b_caption": "the lounge with floral display of yellow lilies",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 848,
+      "split": "val",
+      "source_csv_line": "245",
+      "flags": [
+        [
+          "cf_b_flower_subtype_needs_review",
+          "cf_b"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "245",
+        "reference": "0006/000040030.jpg",
+        "positive": "0013/000080230.jpg",
+        "cf_a": "0006/000038443.jpg",
+        "cf_b": "0009/000055432.jpg",
+        "modification": "change the color of the flower from purple to pink",
+        "attribute_type": "color",
+        "before": "purple",
+        "after": "pink",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "film character is on a purple flower",
+        "positive_caption": "sketch of fashion girls isolated on a white background with pink flowers",
+        "cf_a_caption": "a tiny purple flower covered in fine hairs grows between sharp rocks",
+        "cf_b_caption": "big bunch of cut light pink roses in a flower shop in the center",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 853,
+      "split": "val",
+      "source_csv_line": "24",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "24",
+        "reference": "0012/000071856.jpg",
+        "positive": "0014/000082494.jpg",
+        "cf_a": "0019/000111944.jpg",
+        "cf_b": "0014/000082718.jpg",
+        "modification": "change the color of the dress from black to red",
+        "attribute_type": "color",
+        "before": "black",
+        "after": "red",
+        "object": "dress",
+        "preserved_attributes": "{\"object\": \"dress\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "back in black : person showed off her incredible figure in a crochet black dress that skimmed her tanned and toned thighs whilst clinging to every inch of her gym - honed physique",
+        "positive_caption": "illustration of a fairy with a red dress beside the sleeping moon on a white background",
+        "cf_a_caption": "film costumer designer working on a little black dress .",
+        "cf_b_caption": "red mushroom in the autumn forest among the trees and branches .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 857,
+      "split": "val",
+      "source_csv_line": "617",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "617",
+        "reference": "0019/000113269.jpg",
+        "positive": "0012/000072839.jpg",
+        "cf_a": "0005/000034498.jpg",
+        "cf_b": "0003/000020653.jpg",
+        "modification": "change the color of the orange from red to green",
+        "attribute_type": "color",
+        "before": "red",
+        "after": "green",
+        "object": "orange",
+        "preserved_attributes": "{\"object\": \"orange\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "flower of the close - up portrait of woman in red orange veil - palette knife and brush on canvas",
+        "positive_caption": "seamless pattern of seamless design in green , orange and neutral colors on a black background .",
+        "cf_a_caption": "a pale barely there blue green with a red orange brick .",
+        "cf_b_caption": "basketball hoop in the park with green trees as background",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 866,
+      "split": "val",
+      "source_csv_line": "582",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "582",
+        "reference": "0019/000111944.jpg",
+        "positive": "0010/000057679.jpg",
+        "cf_a": "0011/000068010.jpg",
+        "cf_b": "0011/000065339.jpg",
+        "modification": "change the color of the dress from black to blue",
+        "attribute_type": "color",
+        "before": "black",
+        "after": "blue",
+        "object": "dress",
+        "preserved_attributes": "{\"object\": \"dress\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "film costumer designer working on a little black dress .",
+        "positive_caption": "cartoon character cute woman wears a blue dress smiling with pink heart , waving her hand and show her handkerchief .",
+        "cf_a_caption": "the black dress with those blue ruffled thing for the skirt can really make heads turn .",
+        "cf_b_caption": "a cartoon of a blue bird getting a worm",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 871,
+      "split": "val",
+      "source_csv_line": "165",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "165",
+        "reference": "0014/000084624.jpg",
+        "positive": "0002/000014862.jpg",
+        "cf_a": "0010/000059893.jpg",
+        "cf_b": "0019/000110207.jpg",
+        "modification": "change the color of the cat from black to white",
+        "attribute_type": "color",
+        "before": "black",
+        "after": "white",
+        "object": "cat",
+        "preserved_attributes": "{\"object\": \"cat\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "cute black cat on the roof , vector illustration vector",
+        "positive_caption": "a tower of white cats .",
+        "cf_a_caption": "black cat in a gap",
+        "cf_b_caption": "person the white tiger with down syndrome",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 874,
+      "split": "val",
+      "source_csv_line": "168",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "168",
+        "reference": "0011/000063483.jpg",
+        "positive": "0010/000062004.jpg",
+        "cf_a": "0014/000082494.jpg",
+        "cf_b": "0006/000037931.jpg",
+        "modification": "change the color of the dress from red to pink",
+        "attribute_type": "color",
+        "before": "red",
+        "after": "pink",
+        "object": "dress",
+        "preserved_attributes": "{\"object\": \"dress\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "vector illustration of bald girl in a red dress",
+        "positive_caption": "any precious princess needs a perfect royal outfit , and this gorgeous pink dress would be it .",
+        "cf_a_caption": "illustration of a fairy with a red dress beside the sleeping moon on a white background",
+        "cf_b_caption": "pink bike behind the fence near painted mural",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 893,
+      "split": "val",
+      "source_csv_line": "225",
+      "flags": [
+        [
+          "cf_b_flower_subtype_needs_review",
+          "cf_b"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "225",
+        "reference": "0018/000108135.jpg",
+        "positive": "0013/000079160.jpg",
+        "cf_a": "0002/000016944.jpg",
+        "cf_b": "0015/000088628.jpg",
+        "modification": "change the color of the flower from pink to orange",
+        "attribute_type": "color",
+        "before": "pink",
+        "after": "orange",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "small pink flower tattoo by the artist .",
+        "positive_caption": "azalea has deep orange flowers -- darker in bud .",
+        "cf_a_caption": "decorative pink flowers of biological genus blooming in winter attract bees and native birds to the garden with long lasting",
+        "cf_b_caption": "dance of the orange lilies",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 895,
+      "split": "val",
+      "source_csv_line": "524",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "524",
+        "reference": "0015/000089196.jpg",
+        "positive": "0005/000030388.jpg",
+        "cf_a": "0011/000065339.jpg",
+        "cf_b": "0001/000008546.jpg",
+        "modification": "change the color of the bird from blue to white",
+        "attribute_type": "color",
+        "before": "blue",
+        "after": "white",
+        "object": "bird",
+        "preserved_attributes": "{\"object\": \"bird\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "illustration of a funny blue bird in flight",
+        "positive_caption": "i have always thought that stars turn into white birds in the morning light & sleep with their heads under their wings until the dusk begins to walk through the streets and on paths in the forest",
+        "cf_a_caption": "a cartoon of a blue bird getting a worm",
+        "cf_b_caption": "spinach in a creamy sauce in white plate",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 910,
+      "split": "val",
+      "source_csv_line": "377",
+      "flags": [
+        [
+          "cf_b_flower_subtype_needs_review",
+          "cf_b"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "377",
+        "reference": "0002/000013107.jpg",
+        "positive": "0013/000079160.jpg",
+        "cf_a": "0014/000081569.jpg",
+        "cf_b": "0015/000088628.jpg",
+        "modification": "change the color of the flower from yellow to orange",
+        "attribute_type": "color",
+        "before": "yellow",
+        "after": "orange",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "an attractive young man stands in aa sunny open field full of yellow flowers swaying in the wind looking into the camera",
+        "positive_caption": "azalea has deep orange flowers -- darker in bud .",
+        "cf_a_caption": "man walking his dog through a field of yellow flowers",
+        "cf_b_caption": "dance of the orange lilies",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 911,
+      "split": "val",
+      "source_csv_line": "399",
+      "flags": [
+        [
+          "cf_b_flower_subtype_needs_review",
+          "cf_b"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "399",
+        "reference": "0005/000029017.jpg",
+        "positive": "0016/000094790.jpg",
+        "cf_a": "0004/000025473.jpg",
+        "cf_b": "0014/000085490.jpg",
+        "modification": "change the color of the flower from red to white",
+        "attribute_type": "color",
+        "before": "red",
+        "after": "white",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "a bunch of bright red flowers in a green backdrop",
+        "positive_caption": "image of white flowers on a green background",
+        "cf_a_caption": "in a digital montage with other red flowers",
+        "cf_b_caption": "artist holding a bouquet of white roses .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 920,
+      "split": "val",
+      "source_csv_line": "41",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "41",
+        "reference": "0003/000019052.jpg",
+        "positive": "0016/000096053.jpg",
+        "cf_a": "0016/000096869.jpg",
+        "cf_b": "0017/000100059.jpg",
+        "modification": "change the color of the cat from white to black",
+        "attribute_type": "color",
+        "before": "white",
+        "after": "black",
+        "object": "cat",
+        "preserved_attributes": "{\"object\": \"cat\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "white cat in the night city",
+        "positive_caption": "an illustration of a black cat drinking a milkshake",
+        "cf_a_caption": "cute adorable fluffy white kitten wearing black geeky glasses looking over the glasses slightly to viewers left",
+        "cf_b_caption": "a black bottle of champagne shoots up a cork on a white background , vector",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 930,
+      "split": "val",
+      "source_csv_line": "397",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "397",
+        "reference": "0011/000065339.jpg",
+        "positive": "0009/000054296.jpg",
+        "cf_a": "0015/000089196.jpg",
+        "cf_b": "0007/000044768.jpg",
+        "modification": "change the color of the bird from blue to white",
+        "attribute_type": "color",
+        "before": "blue",
+        "after": "white",
+        "object": "bird",
+        "preserved_attributes": "{\"object\": \"bird\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "a cartoon of a blue bird getting a worm",
+        "positive_caption": "flying forward along wide rice field , white birds flying in the end",
+        "cf_a_caption": "illustration of a funny blue bird in flight",
+        "cf_b_caption": "the white car sustained damage to both the driver 's and passenger 's side .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 937,
+      "split": "val",
+      "source_csv_line": "528",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "528",
+        "reference": "0016/000096053.jpg",
+        "positive": "0003/000019052.jpg",
+        "cf_a": "0002/000015015.jpg",
+        "cf_b": "0018/000106354.jpg",
+        "modification": "change the color of the cat from black to white",
+        "attribute_type": "color",
+        "before": "black",
+        "after": "white",
+        "object": "cat",
+        "preserved_attributes": "{\"object\": \"cat\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "an illustration of a black cat drinking a milkshake",
+        "positive_caption": "white cat in the night city",
+        "cf_a_caption": "halloween black cat with pumpkin on a blue background .",
+        "cf_b_caption": "a woman in a white dress is walking along a field with wheat .",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 952,
+      "split": "val",
+      "source_csv_line": "259",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "259",
+        "reference": "0016/000096053.jpg",
+        "positive": "0004/000024485.jpg",
+        "cf_a": "0000/000000178.jpg",
+        "cf_b": "0002/000011888.jpg",
+        "modification": "change the color of the cat from black to red",
+        "attribute_type": "color",
+        "before": "black",
+        "after": "red",
+        "object": "cat",
+        "preserved_attributes": "{\"object\": \"cat\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "an illustration of a black cat drinking a milkshake",
+        "positive_caption": "the portrait of red cat",
+        "cf_a_caption": "elegant black cat lying on a pink pillow and screws up his eyes",
+        "cf_b_caption": "the word dream big against red apple in front of blackboard on books",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 967,
+      "split": "val",
+      "source_csv_line": "57",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "57",
+        "reference": "0017/000101344.jpg",
+        "positive": "0018/000103705.jpg",
+        "cf_a": "0018/000108327.jpg",
+        "cf_b": "0016/000092322.jpg",
+        "modification": "change the color of the dress from black to green",
+        "attribute_type": "color",
+        "before": "black",
+        "after": "green",
+        "object": "dress",
+        "preserved_attributes": "{\"object\": \"dress\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "vector fashion illustration , women 's black dress on a hanger , hand drawn seamless geometric pattern , isolated elements for invitation card design",
+        "positive_caption": "a studio shot of a pregnant woman in a silk green dress .",
+        "cf_a_caption": "another beautiful bride in a black dress !",
+        "cf_b_caption": "adorable small child with braids wearing a bright green shirt and blue jeans is playing with her father",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 968,
+      "split": "val",
+      "source_csv_line": "393",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "393",
+        "reference": "0001/000009256.jpg",
+        "positive": "0010/000057679.jpg",
+        "cf_a": "0011/000063483.jpg",
+        "cf_b": "0018/000103853.jpg",
+        "modification": "change the color of the dress from red to blue",
+        "attribute_type": "color",
+        "before": "red",
+        "after": "blue",
+        "object": "dress",
+        "preserved_attributes": "{\"object\": \"dress\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "girl in the national red dress posing and smiling for the camera on the seafront",
+        "positive_caption": "cartoon character cute woman wears a blue dress smiling with pink heart , waving her hand and show her handkerchief .",
+        "cf_a_caption": "vector illustration of bald girl in a red dress",
+        "cf_b_caption": "on tuesday , pop artist looked stunning in a pleated blue skirt for an exclusive luncheon",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 972,
+      "split": "val",
+      "source_csv_line": "456",
+      "flags": [
+        [
+          "cf_b_flower_subtype_needs_review",
+          "cf_b"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "456",
+        "reference": "0009/000054039.jpg",
+        "positive": "0013/000079160.jpg",
+        "cf_a": "0018/000108135.jpg",
+        "cf_b": "0015/000088628.jpg",
+        "modification": "change the color of the flower from pink to orange",
+        "attribute_type": "color",
+        "before": "pink",
+        "after": "orange",
+        "object": "flower",
+        "preserved_attributes": "{\"object\": \"flower\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "powerpoint template displaying a pink flower blossoming with its reflection in the background",
+        "positive_caption": "azalea has deep orange flowers -- darker in bud .",
+        "cf_a_caption": "small pink flower tattoo by the artist .",
+        "cf_b_caption": "dance of the orange lilies",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 982,
+      "split": "val",
+      "source_csv_line": "499",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "499",
+        "reference": "0013/000076672.jpg",
+        "positive": "0017/000101344.jpg",
+        "cf_a": "0010/000062458.jpg",
+        "cf_b": "0017/000100059.jpg",
+        "modification": "change the color of the dress from white to black",
+        "attribute_type": "color",
+        "before": "white",
+        "after": "black",
+        "object": "dress",
+        "preserved_attributes": "{\"object\": \"dress\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "aerial : woman in a white dress on vacation",
+        "positive_caption": "vector fashion illustration , women 's black dress on a hanger , hand drawn seamless geometric pattern , isolated elements for invitation card design",
+        "cf_a_caption": "person chose a delicate white dress for her final appearance at this year 's festival .",
+        "cf_b_caption": "a black bottle of champagne shoots up a cork on a white background , vector",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    },
+    {
+      "audit_csv_line": 996,
+      "split": "val",
+      "source_csv_line": "276",
+      "flags": [
+        [
+          "possible_media_mismatch",
+          "reference_positive"
+        ]
+      ],
+      "row": {
+        "split": "val",
+        "source_csv_line": "276",
+        "reference": "0000/000003247.jpg",
+        "positive": "0010/000057679.jpg",
+        "cf_a": "0018/000108327.jpg",
+        "cf_b": "0011/000065339.jpg",
+        "modification": "change the color of the dress from black to blue",
+        "attribute_type": "color",
+        "before": "black",
+        "after": "blue",
+        "object": "dress",
+        "preserved_attributes": "{\"object\": \"dress\"}",
+        "cf_b_changed_attribute": "object",
+        "reference_caption": "here is a look that resembles the looking fashion i have a black dress just like this one that i put with a big sweater and boots .",
+        "positive_caption": "cartoon character cute woman wears a blue dress smiling with pink heart , waving her hand and show her handkerchief .",
+        "cf_a_caption": "another beautiful bride in a black dress !",
+        "cf_b_caption": "a cartoon of a blue bird getting a worm",
+        "positive_ok": "",
+        "cf_a_ok": "",
+        "cf_b_ok": "",
+        "notes": ""
+      }
+    }
+  ]
+}

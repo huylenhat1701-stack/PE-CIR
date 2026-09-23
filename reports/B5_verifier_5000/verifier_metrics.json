@@ -1,0 +1,138 @@
+{
+  "metadata": {
+    "mode": "postprocess_existing_predictions_no_new_inference",
+    "source_run": "C:\\New folder (3)\\PE-CIR\\tmp\\b5_saved_evidence",
+    "samples": 5000,
+    "candidate_predictions": 15000,
+    "binary_decisions": 45000,
+    "threshold": 0.5,
+    "labels": {
+      "positive": [
+        1,
+        1,
+        0
+      ],
+      "cf_a": [
+        1,
+        0,
+        1
+      ],
+      "cf_b": [
+        0,
+        1,
+        1
+      ]
+    },
+    "confusion_matrix_axes": "rows=true [0,1]; columns=predicted [0,1]",
+    "label_source": "Existing pseudo-edit evaluation labels, not human-verified labels",
+    "risk_definition": "Binary classification error among retained decisions, per head and micro",
+    "confidence_definition": "max(p, 1-p); retain confidence >= threshold; ties retained together",
+    "risk_scope": "Verifier classification only; not full-gallery retrieval risk",
+    "sample_index_definition": "1-based source JSON position; original image IDs were not saved",
+    "checkpoint_linkage": "Checkpoint co-located in source run; original export did not record its hash",
+    "model_dataset_training_changed": false,
+    "source_files": {
+      "constraint_scores.json": "d02c4d2e5b1aeb278f31638f2e9656094f7bb1c117c516ee74e748531f9c1657",
+      "best_checkpoint.pt": "086eb8a18dff913fc933b55e3e6e784634311977066788d5cf6617062051ad1f",
+      "config.yaml": "8017960e3d5f4eca8edd9e2afdd1d5575ee29fc085afb78524469d312e0b4546",
+      "run_protocol.json": "8e0607dc5faa0f8ed4e2b0da2ff94b8eecb37fa99f4175f7de79553e2877af72"
+    }
+  },
+  "metrics": {
+    "preserve": {
+      "n": 15000,
+      "precision": 0.9167550882608276,
+      "recall": 0.9504,
+      "f1": 0.9332744144940345,
+      "auroc": 0.95635175,
+      "accuracy": 0.9094,
+      "tn": 4137,
+      "fp": 863,
+      "fn": 496,
+      "tp": 9504,
+      "confusion_matrix": [
+        [
+          4137,
+          863
+        ],
+        [
+          496,
+          9504
+        ]
+      ]
+    },
+    "edit": {
+      "n": 15000,
+      "precision": 0.7638586956521739,
+      "recall": 0.8433,
+      "f1": 0.8016159695817491,
+      "auroc": 0.79156281,
+      "accuracy": 0.7217333333333333,
+      "tn": 2393,
+      "fp": 2607,
+      "fn": 1567,
+      "tp": 8433,
+      "confusion_matrix": [
+        [
+          2393,
+          2607
+        ],
+        [
+          1567,
+          8433
+        ]
+      ]
+    },
+    "violation": {
+      "n": 15000,
+      "precision": 0.7313118209826496,
+      "recall": 0.902,
+      "f1": 0.80773708247515,
+      "auroc": 0.78180424,
+      "accuracy": 0.7137333333333333,
+      "tn": 1686,
+      "fp": 3314,
+      "fn": 980,
+      "tp": 9020,
+      "confusion_matrix": [
+        [
+          1686,
+          3314
+        ],
+        [
+          980,
+          9020
+        ]
+      ]
+    },
+    "micro": {
+      "n": 45000,
+      "precision": 0.7989389763196112,
+      "recall": 0.8985666666666666,
+      "f1": 0.8458292151048775,
+      "auroc": 0.86328559,
+      "accuracy": 0.7816222222222222,
+      "tn": 8216,
+      "fp": 6784,
+      "fn": 3043,
+      "tp": 26957,
+      "confusion_matrix": [
+        [
+          8216,
+          6784
+        ],
+        [
+          3043,
+          26957
+        ]
+      ]
+    }
+  },
+  "macro": {
+    "precision": 0.8039752016318836,
+    "recall": 0.8985666666666666,
+    "f1": 0.8475424888503111,
+    "auroc": 0.8432396,
+    "accuracy": 0.7816222222222221
+  }
+}

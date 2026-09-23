@@ -37,6 +37,9 @@ def search_cfpe(
 ) -> list[CFPERetrievalResult]:
     """Retrieve globally, then rerank only the Stage-1 Top-K for B5."""
 
+    if top_k <= 0 or (return_k is not None and return_k <= 0):
+        raise ValueError("Ranking counts must be positive")
+    requested = return_k if return_k is not None else top_k
     reference_path = Path(reference_path).resolve()
     with Image.open(reference_path) as image:
         image_tensor = backbone.preprocess(image.convert("RGB")).unsqueeze(0).to(backbone.device)
@@ -44,12 +47,14 @@ def search_cfpe(
         reference = backbone.encode_image(image_tensor, normalize=True)
         text = backbone.encode_text([modification], normalize=True)
         output = model(reference, text)
-        stage1 = index.search(output.query, top_k=top_k, exclude_paths={reference_path})
+        stage1 = index.search(output.query, top_k=max(top_k, requested), exclude_paths={reference_path})
         if not stage1:
             return []
         if not model.uses_verifier:
             limit = min(return_k or top_k, len(stage1))
             return [CFPERetrievalResult(item.path, item.score, item.score) for item in stage1[:limit]]
+        tail = stage1[top_k:]
+        stage1 = stage1[:top_k]
         path_to_index = {path: i for i, path in enumerate(index.paths)}
         positions = torch.tensor([path_to_index[item.path] for item in stage1], dtype=torch.long)
         candidates = index.features[positions].to(backbone.device).unsqueeze(0)
@@ -73,4 +78,5 @@ def search_cfpe(
                 float(constraints.edit[0, position]),
                 float(constraints.violation[0, position]),
             ))
-        return results
+        results.extend(CFPERetrievalResult(item.path, item.score, item.score) for item in tail)
+        return results[:requested]

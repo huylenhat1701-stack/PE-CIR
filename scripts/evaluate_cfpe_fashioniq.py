@@ -51,8 +51,11 @@ def main() -> int:
         if path.is_file():
             indexes[category] = CandidateIndex.load(path)
         else:
-            indexes[category] = build_candidate_index(backbone, dataset.candidates(category), batch_size=8)
+            indexes[category] = build_candidate_index(backbone, dataset.candidates(category), batch_size=8, progress=lambda n, total: print(f"Indexed {n}/{total}", flush=True) if n % 512 == 0 or n == total else None)
             indexes[category].save(path)
+        if set(indexes[category].paths) != {p.resolve() for p in dataset.candidates(category)}:
+            raise ValueError(f"Incomplete or incompatible index for {category}")
+    stage1_rankings = defaultdict(list)
     rankings: dict[str, list[list[str]]] = defaultdict(list)
     targets: dict[str, list[str]] = defaultdict(list)
     predictions: list[dict[str, object]] = []
@@ -65,6 +68,7 @@ def main() -> int:
             query.modification, top_k=args.top_k, return_k=args.top_k,
         )
         ranking = [id_for_path[item.path] for item in results]
+        stage1_rankings[query.category].append([id_for_path[item.path] for item in sorted(results, key=lambda item: item.stage1_score, reverse=True)])
         rankings[query.category].append(ranking)
         targets[query.category].append(query.target_id)
         predictions.append({
@@ -85,12 +89,14 @@ def main() -> int:
         for category in rankings
     }
     metrics = {
+        "stage1_per_category_recall": {c: recall_at_k(stage1_rankings[c], targets[c], (10, 50)) for c in rankings},
+        "top_k_rerank": args.top_k if model.uses_verifier else None,
         "dataset": "Fashion-IQ", "variant": checkpoint["variant"],
         "query_count": len(dataset.queries), "per_category_recall": per_category,
         "mean_recall": {
             k: sum(values[k] for values in per_category.values()) / len(per_category)
             for k in (10, 50)
-        }, "officially_comparable": True,
+        }, "split": "val",
     }
     run_dir = args.run_dir.resolve()
     run_dir.mkdir(parents=True, exist_ok=True)
