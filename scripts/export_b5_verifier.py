@@ -8,6 +8,7 @@ import hashlib
 import itertools
 import json
 import math
+import statistics
 from pathlib import Path
 
 HEADS = ("preserve", "edit", "violation")
@@ -125,6 +126,8 @@ def write_plot(path, curves):
 
 
 def export(run, output, expected_count=5000):
+    if expected_count <= 0:
+        raise ValueError("expected_count must be positive")
     source = run / "constraint_scores.json"
     records = json.loads(source.read_text(encoding="utf-8"))
     if not isinstance(records, list) or len(records) != expected_count:
@@ -149,6 +152,9 @@ def export(run, output, expected_count=5000):
                 "candidate": candidate,
                 "stage1_score": score,
             }
+            if "images" in record:
+                row["reference_image"] = record["images"]["reference"]
+                row["candidate_image"] = record["images"][candidate]
             for head, y, p in zip(HEADS, labels, probabilities):
                 row.update(
                     {
@@ -166,6 +172,17 @@ def export(run, output, expected_count=5000):
     )
     metrics = {head: summarize(*values) for head, values in by_head.items()}
     curves = {head: risk_curve(*values) for head, values in by_head.items()}
+    confidence = []
+    for head, (labels, scores) in by_head.items():
+        values = [max(p, 1 - p) for p in scores]
+        confidence.append(
+            {
+                "head": head,
+                "decisions": len(scores),
+                "mean": statistics.fmean(values),
+                "median": statistics.median(values),
+            }
+        )
     old_metrics_path = run / "metrics.json"
     if old_metrics_path.exists():
         old = json.loads(old_metrics_path.read_text(encoding="utf-8"))
@@ -203,9 +220,22 @@ def export(run, output, expected_count=5000):
             if (run / name).is_file()
         },
     }
+    protocol_path = run / "evaluation_protocol.json"
+    if protocol_path.is_file():
+        protocol = json.loads(protocol_path.read_text(encoding="utf-8"))
+        if protocol.get("status") != "completed" or protocol.get("samples") != len(records):
+            raise ValueError("Evaluation protocol is incomplete or has a different sample count")
+        if protocol.get("predictions_sha256") != sha256(source):
+            raise ValueError("Prediction hash differs from completed evaluation protocol")
+        metadata.update(
+            evaluation_protocol=protocol,
+            sample_index_definition="1-based manifest row; original image paths included",
+            checkpoint_linkage="Checkpoint/manifest hashes recorded before and after inference",
+        )
     output.mkdir(parents=True, exist_ok=False)
-    (output / "predictions_5000.json").write_bytes(source.read_bytes())
-    write_csv(output / "predictions_15000_candidates.csv", predictions)
+    (output / f"predictions_{len(records)}.json").write_bytes(source.read_bytes())
+    write_csv(output / f"predictions_{len(predictions)}_candidates.csv", predictions)
+    write_csv(output / "confidence_summary.csv", confidence)
     result = {
         "metadata": metadata,
         "metrics": metrics,
@@ -213,6 +243,7 @@ def export(run, output, expected_count=5000):
             key: sum(metrics[h][key] for h in HEADS) / 3
             for key in ("precision", "recall", "f1", "auroc", "accuracy")
         },
+        "confidence": confidence,
     }
     (output / "verifier_metrics.json").write_text(json.dumps(result, indent=2), encoding="utf-8")
     write_csv(
@@ -262,7 +293,7 @@ def export(run, output, expected_count=5000):
         "",
         "Predicted positive when p >= 0.5. Undefined precision/recall/F1 use zero. AUROC uses probabilities with half credit for ties.",
         "Labels (preserve, edit, violation): positive=(1,1,0), CF-A=(1,0,1), CF-B=(0,1,1).",
-        "Each head evaluates 15,000 candidates. Micro pools 45,000 binary decisions; macro averages three heads.",
+        f"Each head evaluates {len(predictions):,} candidates. Micro pools {len(predictions) * 3:,} binary decisions; macro averages three heads.",
         "Confusion matrices: rows = actual 0/1; columns = predicted 0/1.",
         "",
         "Risk–Coverage: confidence=max(p,1-p); risk=classification errors/retained decisions. Whole confidence ties are retained together. Zero coverage has undefined risk and is omitted. This is verifier classification risk, not gallery retrieval risk.",
@@ -270,7 +301,11 @@ def export(run, output, expected_count=5000):
         "## Limitations",
         "",
         "Labels come from the existing pseudo-edit protocol. Existing label noise and train/validation overlap are not repaired by this export.",
-        "The original scores omit image IDs, evaluation manifest identity, and inference-time checkpoint hash. Row indices identify source positions only. Current checkpoint/source hashes are recorded for traceability, not proof of historical linkage.",
+        (
+            "Evaluation provenance, image paths and checkpoint/manifest hashes are recorded in verifier_metrics.json. This is TRAIN-set evaluation, not held-out validation."
+            if protocol_path.is_file() and protocol.get("split") == "train"
+            else "The original scores omit image IDs, evaluation manifest identity, and inference-time checkpoint hash. Row indices identify source positions only. Current checkpoint/source hashes are recorded for traceability, not proof of historical linkage."
+        ),
         "The historical per_query_predictions.json placeholder is not overwritten. This export covers the stored three-candidate counterfactual evaluation, not CIRR/Fashion-IQ gallery rankings.",
     ]
     (output / "REPORT.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
@@ -281,8 +316,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run-dir", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--expected-count", type=int, default=5000)
     args = parser.parse_args()
-    result = export(args.run_dir, args.output)
+    result = export(args.run_dir, args.output, expected_count=args.expected_count)
     for head, values in result["metrics"].items():
         print(
             head, " ".join(f"{k}={values[k]:.6f}" for k in ("precision", "recall", "f1", "auroc"))

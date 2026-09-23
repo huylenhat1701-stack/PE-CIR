@@ -1,0 +1,4 @@
+﻿variant,run,counterfactual_query_count,cf_a_win_percent,cf_b_win_percent,both_win_percent,hard_negative_error_percent,verifier_label_accuracy_percent
+B1,B1_server_20260921-155218,5000,80.04,95.78,77.54,22.46,
+B4,B4_server_20260921-175002,5000,77.98,97.68,76.58,23.42,
+B5,B5_override_20260922-085644,5000,78.06,97.82,76.84,23.16,78.16222222222223

@@ -1,0 +1,252 @@
+{
+  "confidence": [
+    {
+      "head": "preserve",
+      "decisions": 15000,
+      "mean": 0.8555407930143915,
+      "median": 0.9021349400281906,
+      "mean_correct": 0.8706328155802492,
+      "mean_incorrect": 0.704054200063056,
+      "confidence_ge_0_9_count": 7643,
+      "confidence_ge_0_9_coverage": 0.5095333333333333,
+      "confidence_ge_0_9_risk": 0.019102446683239564
+    },
+    {
+      "head": "edit",
+      "decisions": 15000,
+      "mean": 0.7142521863569816,
+      "median": 0.6943551599979401,
+      "mean_correct": 0.7478243788752795,
+      "mean_incorrect": 0.6271768255033416,
+      "confidence_ge_0_9_count": 2146,
+      "confidence_ge_0_9_coverage": 0.14306666666666668,
+      "confidence_ge_0_9_risk": 0.026561043802423114
+    },
+    {
+      "head": "violation",
+      "decisions": 15000,
+      "mean": 0.729427800260981,
+      "median": 0.7130813598632812,
+      "mean_correct": 0.7636613981001804,
+      "mean_incorrect": 0.6440750060210019,
+      "confidence_ge_0_9_count": 2714,
+      "confidence_ge_0_9_coverage": 0.18093333333333333,
+      "confidence_ge_0_9_risk": 0.02431834929992631
+    },
+    {
+      "head": "micro",
+      "decisions": 45000,
+      "mean": 0.766406926544118,
+      "median": 0.7774499952793121,
+      "mean_correct": 0.8002731609784348,
+      "mean_incorrect": 0.6451922054941308,
+      "confidence_ge_0_9_count": 12503,
+      "confidence_ge_0_9_coverage": 0.27784444444444445,
+      "confidence_ge_0_9_risk": 0.02151483643925458
+    }
+  ],
+  "coverage": [
+    {
+      "head": "preserve",
+      "target_coverage": 0.25,
+      "confidence_threshold": 0.9538601413369179,
+      "retained": 3750,
+      "coverage": 0.25,
+      "errors": 43,
+      "risk": 0.011466666666666667
+    },
+    {
+      "head": "preserve",
+      "target_coverage": 0.5,
+      "confidence_threshold": 0.9021444320678711,
+      "retained": 7500,
+      "coverage": 0.5,
+      "errors": 144,
+      "risk": 0.0192
+    },
+    {
+      "head": "preserve",
+      "target_coverage": 0.75,
+      "confidence_threshold": 0.7907020449638367,
+      "retained": 11250,
+      "coverage": 0.75,
+      "errors": 407,
+      "risk": 0.03617777777777778
+    },
+    {
+      "head": "preserve",
+      "target_coverage": 1,
+      "confidence_threshold": 0.5000250339508057,
+      "retained": 15000,
+      "coverage": 1.0,
+      "errors": 1359,
+      "risk": 0.0906
+    },
+    {
+      "head": "edit",
+      "target_coverage": 0.25,
+      "confidence_threshold": 0.8390851020812988,
+      "retained": 3750,
+      "coverage": 0.25,
+      "errors": 169,
+      "risk": 0.045066666666666665
+    },
+    {
+      "head": "edit",
+      "target_coverage": 0.5,
+      "confidence_threshold": 0.6943854689598083,
+      "retained": 7500,
+      "coverage": 0.5,
+      "errors": 921,
+      "risk": 0.1228
+    },
+    {
+      "head": "edit",
+      "target_coverage": 0.75,
+      "confidence_threshold": 0.5892172455787659,
+      "retained": 11250,
+      "coverage": 0.75,
+      "errors": 2376,
+      "risk": 0.2112
+    },
+    {
+      "head": "edit",
+      "target_coverage": 1,
+      "confidence_threshold": 0.5000314712524414,
+      "retained": 15000,
+      "coverage": 1.0,
+      "errors": 4174,
+      "risk": 0.27826666666666666
+    },
+    {
+      "head": "violation",
+      "target_coverage": 0.25,
+      "confidence_threshold": 0.8606932163238525,
+      "retained": 3750,
+      "coverage": 0.25,
+      "errors": 154,
+      "risk": 0.04106666666666667
+    },
+    {
+      "head": "violation",
+      "target_coverage": 0.5,
+      "confidence_threshold": 0.7130994200706482,
+      "retained": 7500,
+      "coverage": 0.5,
+      "errors": 1058,
+      "risk": 0.14106666666666667
+    },
+    {
+      "head": "violation",
+      "target_coverage": 0.75,
+      "confidence_threshold": 0.6023806929588318,
+      "retained": 11250,
+      "coverage": 0.75,
+      "errors": 2511,
+      "risk": 0.2232
+    },
+    {
+      "head": "violation",
+      "target_coverage": 1,
+      "confidence_threshold": 0.5000287294387817,
+      "retained": 15000,
+      "coverage": 1.0,
+      "errors": 4294,
+      "risk": 0.28626666666666667
+    },
+    {
+      "head": "micro",
+      "target_coverage": 0.25,
+      "confidence_threshold": 0.9104209542274475,
+      "retained": 11250,
+      "coverage": 0.25,
+      "errors": 206,
+      "risk": 0.01831111111111111
+    },
+    {
+      "head": "micro",
+      "target_coverage": 0.5,
+      "confidence_threshold": 0.7774561047554016,
+      "retained": 22500,
+      "coverage": 0.5,
+      "errors": 1342,
+      "risk": 0.059644444444444444
+    },
+    {
+      "head": "micro",
+      "target_coverage": 0.75,
+      "confidence_threshold": 0.6287992000579834,
+      "retained": 33750,
+      "coverage": 0.75,
+      "errors": 4691,
+      "risk": 0.13899259259259258
+    },
+    {
+      "head": "micro",
+      "target_coverage": 1,
+      "confidence_threshold": 0.5000250339508057,
+      "retained": 45000,
+      "coverage": 1.0,
+      "errors": 9827,
+      "risk": 0.21837777777777778
+    }
+  ],
+  "benchmark": [
+    {
+      "variant": "B1",
+      "run": "B1_server_20260921-155218",
+      "counterfactual_query_count": 5000,
+      "cf_a_win_percent": 80.04,
+      "cf_b_win_percent": 95.78,
+      "both_win_percent": 77.54,
+      "hard_negative_error_percent": 22.46,
+      "verifier_label_accuracy_percent": null
+    },
+    {
+      "variant": "B4",
+      "run": "B4_server_20260921-175002",
+      "counterfactual_query_count": 5000,
+      "cf_a_win_percent": 77.98,
+      "cf_b_win_percent": 97.68,
+      "both_win_percent": 76.58,
+      "hard_negative_error_percent": 23.42,
+      "verifier_label_accuracy_percent": null
+    },
+    {
+      "variant": "B5",
+      "run": "B5_override_20260922-085644",
+      "counterfactual_query_count": 5000,
+      "cf_a_win_percent": 78.06,
+      "cf_b_win_percent": 97.82,
+      "both_win_percent": 76.84,
+      "hard_negative_error_percent": 23.16,
+      "verifier_label_accuracy_percent": 78.16222222222223
+    }
+  ],
+  "first_record": {
+    "modification": "change the color from blue to red",
+    "attribute_type": "color",
+    "positive_score": 0.13112321496009827,
+    "cf_a_score": 0.07765427231788635,
+    "cf_b_score": 0.012306678108870983,
+    "cf_a_win": true,
+    "cf_b_win": true,
+    "verifier": {
+      "positive": [
+        0.9106277227401733,
+        0.4798411428928375,
+        0.606865406036377
+      ],
+      "cf_a": [
+        0.944199800491333,
+        0.4262157082557678,
+        0.5870625376701355
+      ],
+      "cf_b": [
+        0.23105540871620178,
+        0.8280995488166809,
+        0.9023062586784363
+      ]
+    }
+  }
+}

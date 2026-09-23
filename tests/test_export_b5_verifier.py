@@ -55,9 +55,43 @@ def test_export_counts_and_rejects_invalid_input(tmp_path):
     assert result["metadata"]["binary_decisions"] == 9
     assert result["metrics"]["micro"]["accuracy"] == 1
     assert result["metrics"]["micro"]["n"] == 9
-    assert (tmp_path / "good/predictions_5000.json").read_bytes() == source.read_bytes()
+    assert (tmp_path / "good/predictions_1.json").read_bytes() == source.read_bytes()
+    assert (tmp_path / "good/predictions_3_candidates.csv").is_file()
+    assert result["confidence"][0]["mean"] == 1
     row["verifier"]["positive"][0] = float("nan")
     source.write_text(json.dumps([row]))
     with pytest.raises(ValueError, match="Invalid verifier"):
         module.export(run, tmp_path / "bad_score", expected_count=1)
     assert not (tmp_path / "bad_score").exists()
+
+
+def test_export_checks_fresh_inference_hash_and_preserves_ids(tmp_path):
+    import csv
+
+    run = tmp_path / "run"
+    run.mkdir()
+    row = {
+        "modification": "test",
+        "positive_score": 0.8,
+        "cf_a_score": 0.3,
+        "cf_b_score": 0.2,
+        "verifier": {k: list(v) for k, v in module.LABELS.items()},
+        "images": {k: k + ".jpg" for k in ("reference", *module.LABELS)},
+    }
+    source = run / "constraint_scores.json"
+    source.write_text(json.dumps([row]))
+    protocol = {
+        "status": "completed",
+        "samples": 1,
+        "split": "train",
+        "predictions_sha256": module.sha256(source),
+    }
+    (run / "evaluation_protocol.json").write_text(json.dumps(protocol))
+    result = module.export(run, tmp_path / "good", expected_count=1)
+    assert result["metadata"]["evaluation_protocol"]["split"] == "train"
+    with (tmp_path / "good/predictions_3_candidates.csv").open(encoding="utf-8-sig") as f:
+        rows = list(csv.DictReader(f))
+    assert rows[0]["candidate_image"] == "positive.jpg"
+    source.write_text(json.dumps([row]) + "\n")
+    with pytest.raises(ValueError, match="hash differs"):
+        module.export(run, tmp_path / "bad_hash", expected_count=1)
