@@ -1,17 +1,19 @@
-HUONG DAN DANG NHAP SSH MAY CHU AIOTLAB
+HUONG DAN DANG NHAP SSH MAY CHU (QUA VPN)
+
+YEU CAU: Phai ket noi VPN truoc khi SSH.
 
 1. Mo PowerShell hoac Windows Terminal tren may Windows.
 
 2. Dan lenh sau va nhan Enter:
 
-ssh quynhptit@aiotlab.viu.edu.vn -p 30101
+ssh iec@10.170.100.152
 
 3. Neu lan dau ket noi co thong bao:
-   Are you sure you want to continue connecting (yes/no/[fingerprint])?
+   Are you sure you want to continue connecting (yes/no/[fingerprint])? 
    Doi chieu fingerprint voi co/quan tri vien. Neu dung, go yes va Enter.
    Khong viet yes chung vao lenh SSH.
 
-4. Khi hien password:, nhap mat khau co da cap va nhan Enter.
+4. Khi hien password:, nhap mat khau da cap va nhan Enter.
    Mat khau khong hien ky tu hay dau * khi go. Day la binh thuong.
    Mat khau khong duoc luu trong tep nay; xem lai tin nhan cap tai khoan.
 
@@ -27,17 +29,26 @@ nvidia-smi
 exit
 
 THONG TIN KET NOI
-Tai khoan: quynhptit
-May chu: aiotlab.viu.edu.vn
-Cong SSH: 30101
+Tai khoan: iec
+May chu: 10.170.100.152
+Cong SSH: 22 (mac dinh)
+Dieu kien: Phai bat VPN truoc
+
+LENH SCP - TAI CHECKPOINT TU SERVER VE MAY
+Tai mot file cu the:
+scp iec@10.170.100.152:/duong/dan/tren/server/checkpoint.pt "c:\New folder (3)\PE-CIR\checkpoints\"
+
+Tai ca thu muc:
+scp -r iec@10.170.100.152:/duong/dan/tren/server/checkpoints/ "c:\New folder (3)\PE-CIR\checkpoints\"
 
 LOI THUONG GAP
 - Permission denied: kiem tra tai khoan va mat khau; luu y Caps Lock.
-- Connection timed out: kiem tra Internet va hoi co may chu co truy cap duoc khong.
-- Connection refused: kiem tra cong 30101 va tinh trang dich vu SSH voi quan tri vien.
+- Connection timed out: Chua bat VPN hoac kiem tra Internet.
+- Connection refused: kiem tra IP va tinh trang SSH server.
 - REMOTE HOST IDENTIFICATION HAS CHANGED: hoi quan tri vien xac nhan truoc khi sua known_hosts.
 
 LUU Y
 - Khong them dau \ truoc @ trong lenh SSH.
 - Mat khau duoc nhap rieng khi SSH hoi, khong dan vao lenh.
 - Thong nhat khung gio va GPU voi co truoc khi chay huan luyen.
+- Thong tin cu (quynhptit@aiotlab.viu.edu.vn:30101) la may chu AIOTLAB, khong dung qua VPN.
