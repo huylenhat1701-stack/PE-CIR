@@ -1,0 +1,10 @@
+{
+  "counterfactual_evaluation": {
+    "counterfactual_query_count": 45000,
+    "cf_a_win_percent": 95.84666666666666,
+    "cf_b_win_percent": 98.95333333333333,
+    "both_win_percent": 94.86666666666666,
+    "hard_negative_error_percent": 5.133333333333334,
+    "verifier_label_accuracy_percent": null
+  }
+}

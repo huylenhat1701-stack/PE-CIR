@@ -1,0 +1,226 @@
+{
+  "metadata": {
+    "mode": "postprocess_existing_predictions_no_new_inference",
+    "source_run": "/home/iec/PE-CIR-20260921-134120/reports/B5_train45000/inference",
+    "samples": 45000,
+    "candidate_predictions": 135000,
+    "binary_decisions": 405000,
+    "threshold": 0.5,
+    "labels": {
+      "positive": [
+        1,
+        1,
+        0
+      ],
+      "cf_a": [
+        1,
+        0,
+        1
+      ],
+      "cf_b": [
+        0,
+        1,
+        1
+      ]
+    },
+    "confusion_matrix_axes": "rows=true [0,1]; columns=predicted [0,1]",
+    "label_source": "Existing pseudo-edit evaluation labels, not human-verified labels",
+    "risk_definition": "Binary classification error among retained decisions, per head and micro",
+    "confidence_definition": "max(p, 1-p); retain confidence >= threshold; ties retained together",
+    "risk_scope": "Verifier classification only; not full-gallery retrieval risk",
+    "sample_index_definition": "1-based manifest row; original image paths included",
+    "checkpoint_linkage": "Checkpoint/manifest hashes recorded before and after inference",
+    "model_dataset_training_changed": false,
+    "source_files": {
+      "constraint_scores.json": "d0a63a49730303ebbc514833742ca680474fc318d7ebca4bb9e3412ffdb98aa4"
+    },
+    "evaluation_protocol": {
+      "status": "completed",
+      "split": "train",
+      "variant": "B5",
+      "samples": 45000,
+      "unique_image_paths": 13582,
+      "checkpoint": "/home/iec/PE-CIR-20260921-134120/runs/B5_override_20260922-085644/best_checkpoint.pt",
+      "checkpoint_sha256": "086eb8a18dff913fc933b55e3e6e784634311977066788d5cf6617062051ad1f",
+      "checkpoint_step": 12605,
+      "training_seed": 0,
+      "manifest": "/home/iec/datasets/cc3m/pseudo_screening/train.csv",
+      "manifest_sha256": "7412d5b02ba5dda12f8d5f704a6d8be48237ddac06a405aedc1d7175675e5197",
+      "training_manifest_hash_verified": true,
+      "image_root": "/home/iec/datasets/cc3m/subset_5000/images",
+      "batch_size": 16,
+      "shuffle": false,
+      "drop_last": false,
+      "num_workers": 0,
+      "gradients": false,
+      "training_enabled": false,
+      "inference_precision": "FP32; same default as evaluate_counterfactual.py; no autocast",
+      "device": "NVIDIA GeForce RTX 4090",
+      "torch_version": "2.6.0+cu124",
+      "source_run_protocol": {
+        "training_enabled": true,
+        "manual_go_override": true,
+        "measured_metric_gate_passed": false,
+        "purpose": "Exploratory B5 requested by user; not a claim that B4 passed the scientific GO gate.",
+        "initialization": "fresh B5 model; no B4 checkpoint warm start",
+        "source_B1": "/home/iec/PE-CIR-20260921-134120/runs/B1_server_20260921-155218",
+        "source_B4": "/home/iec/PE-CIR-20260921-134120/runs/B4_server_20260921-175002",
+        "B1_counterfactual_evaluation": {
+          "counterfactual_query_count": 5000,
+          "cf_a_win_percent": 80.04,
+          "cf_b_win_percent": 95.78,
+          "both_win_percent": 77.54,
+          "hard_negative_error_percent": 22.46,
+          "verifier_label_accuracy_percent": null
+        },
+        "B4_counterfactual_evaluation": {
+          "counterfactual_query_count": 5000,
+          "cf_a_win_percent": 77.98,
+          "cf_b_win_percent": 97.68,
+          "both_win_percent": 76.58,
+          "hard_negative_error_percent": 23.42,
+          "verifier_label_accuracy_percent": null
+        },
+        "recorded_train_settings_match": true,
+        "validation_manifest_identity_verified": false,
+        "data_note": "Reuses B4 data. Previously identified label noise and train/val image overlap are not fixed by this run.",
+        "train_manifest_sha256": "7412d5b02ba5dda12f8d5f704a6d8be48237ddac06a405aedc1d7175675e5197",
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "samples": 45000,
+        "batch_size": 16,
+        "epochs": 5,
+        "expected_steps": 14060
+      },
+      "source_script_sha256": "524355b29bc572ea3521b59ef0b7085f1976d8226bdfdf05d1eab3d64f263f2c",
+      "export_script_sha256": "cc409252008d51eebc848050225a157ceeefb14195ac3e47fc3cacc3cf820bda",
+      "scope": "Training-set evaluation. Not held-out validation or generalization evidence.",
+      "started_utc": "2026-09-23T06:14:06.713161+00:00",
+      "finished_utc": "2026-09-23T07:39:41.441472+00:00",
+      "predictions_sha256": "d0a63a49730303ebbc514833742ca680474fc318d7ebca4bb9e3412ffdb98aa4",
+      "input_hashes_unchanged": true
+    }
+  },
+  "metrics": {
+    "preserve": {
+      "n": 135000,
+      "precision": 0.9200293925876861,
+      "recall": 0.9877333333333334,
+      "f1": 0.9526800019290227,
+      "auroc": 0.9733291586419753,
+      "accuracy": 0.9345851851851852,
+      "tn": 37273,
+      "fp": 7727,
+      "fn": 1104,
+      "tp": 88896,
+      "confusion_matrix": [
+        [
+          37273,
+          7727
+        ],
+        [
+          1104,
+          88896
+        ]
+      ]
+    },
+    "edit": {
+      "n": 135000,
+      "precision": 0.8512340537459997,
+      "recall": 0.863,
+      "f1": 0.8570766480545563,
+      "auroc": 0.8914260745679012,
+      "accuracy": 0.8081185185185186,
+      "tn": 31426,
+      "fp": 13574,
+      "fn": 12330,
+      "tp": 77670,
+      "confusion_matrix": [
+        [
+          31426,
+          13574
+        ],
+        [
+          12330,
+          77670
+        ]
+      ]
+    },
+    "violation": {
+      "n": 135000,
+      "precision": 0.8341742418656583,
+      "recall": 0.8799333333333333,
+      "f1": 0.8564430049151873,
+      "auroc": 0.8844545255555556,
+      "accuracy": 0.8033407407407407,
+      "tn": 29257,
+      "fp": 15743,
+      "fn": 10806,
+      "tp": 79194,
+      "confusion_matrix": [
+        [
+          29257,
+          15743
+        ],
+        [
+          10806,
+          79194
+        ]
+      ]
+    },
+    "micro": {
+      "n": 405000,
+      "precision": 0.8690117537234269,
+      "recall": 0.9102222222222223,
+      "f1": 0.8891397312609894,
+      "auroc": 0.9249619301508917,
+      "accuracy": 0.8486814814814815,
+      "tn": 97956,
+      "fp": 37044,
+      "fn": 24240,
+      "tp": 245760,
+      "confusion_matrix": [
+        [
+          97956,
+          37044
+        ],
+        [
+          24240,
+          245760
+        ]
+      ]
+    }
+  },
+  "macro": {
+    "precision": 0.8684792293997813,
+    "recall": 0.9102222222222222,
+    "f1": 0.8887332182995888,
+    "auroc": 0.9164032529218108,
+    "accuracy": 0.8486814814814815
+  },
+  "confidence": [
+    {
+      "head": "preserve",
+      "decisions": 135000,
+      "mean": 0.9165027429877516,
+      "median": 0.9659119844436646
+    },
+    {
+      "head": "edit",
+      "decisions": 135000,
+      "mean": 0.7501844473799415,
+      "median": 0.7368453145027161
+    },
+    {
+      "head": "violation",
+      "decisions": 135000,
+      "mean": 0.7488609176770336,
+      "median": 0.7355689406394958
+    },
+    {
+      "head": "micro",
+      "decisions": 405000,
+      "mean": 0.8051827026815755,
+      "median": 0.8410340249538422
+    }
+  ]
+}

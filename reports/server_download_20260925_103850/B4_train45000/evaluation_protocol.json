@@ -1,0 +1,16 @@
+{
+  "variant": "B4",
+  "split": "train",
+  "samples": 45000,
+  "unique_image_paths": 13582,
+  "manifest": "/home/iec/datasets/cc3m/pseudo_screening/train.csv",
+  "manifest_sha256": "7412d5b02ba5dda12f8d5f704a6d8be48237ddac06a405aedc1d7175675e5197",
+  "training_manifest_hash_verified": false,
+  "checkpoint": "/home/iec/PE-CIR-20260921-134120/runs/B4_server_20260921-175002/best_checkpoint.pt",
+  "checkpoint_sha256": "8686f4caa888633fa60e6685d4049f2c6841b4b68d659d20259488e70746cb8d",
+  "batch_size": 16,
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "scope": "Training-set Stage-1 counterfactual evaluation, before rerank; not held-out validation.",
+  "status": "running",
+  "started_utc": "2026-09-24T17:22:00.767954+00:00"
+}

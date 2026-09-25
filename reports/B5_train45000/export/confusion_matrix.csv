@@ -1,0 +1,17 @@
+﻿head,actual,predicted,count
+preserve,0,0,37273
+preserve,0,1,7727
+preserve,1,0,1104
+preserve,1,1,88896
+edit,0,0,31426
+edit,0,1,13574
+edit,1,0,12330
+edit,1,1,77670
+violation,0,0,29257
+violation,0,1,15743
+violation,1,0,10806
+violation,1,1,79194
+micro,0,0,97956
+micro,0,1,37044
+micro,1,0,24240
+micro,1,1,245760
