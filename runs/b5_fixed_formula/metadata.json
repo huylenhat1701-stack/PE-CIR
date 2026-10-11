@@ -1,0 +1,152 @@
+{
+  "git_commit": "unknown",
+  "git_commit_scope": "evaluation workspace; not the historical training commit",
+  "device": "cuda",
+  "top_k_values": [
+    50,
+    100
+  ],
+  "ablation_modes": {
+    "preserve_only": {
+      "alpha": 1.0,
+      "beta": 0.0,
+      "gamma": 0.0
+    },
+    "edit_only": {
+      "alpha": 0.0,
+      "beta": 1.0,
+      "gamma": 0.0
+    },
+    "preserve_edit": {
+      "alpha": 0.5,
+      "beta": 0.5,
+      "gamma": 0.0
+    },
+    "full_verifier": {
+      "alpha": 0.5,
+      "beta": 0.5,
+      "gamma": 0.5
+    }
+  },
+  "checkpoints": {
+    "B1": {
+      "path": "checkpoints/b1_best.pt",
+      "sha256": "700b6318e08a73a7bc76afbd3b4822fa59e87286f4065a9d9f8fdd4a6e4d148a",
+      "variant": "B1",
+      "config": {
+        "model": {
+          "variant": "B1",
+          "backbone": "ViT-L-14-quickgelu",
+          "pretrained": "openai",
+          "hidden_dim": 512,
+          "slots": 8
+        },
+        "training": {
+          "epochs": 5,
+          "batch_size_per_device": 16,
+          "learning_rate": 0.0001,
+          "weight_decay": 0.1,
+          "precision": "amp",
+          "seed": 0,
+          "num_workers": 4,
+          "save_every_steps": 100,
+          "max_grad_norm": 1.0,
+          "loss_weights": {
+            "factorization": 0.2,
+            "counterfactual": 0.0,
+            "verifier": 0.0
+          }
+        },
+        "data": {
+          "train_manifest": "/home/iec/datasets/cc3m/pseudo_screening/train.csv",
+          "image_root": "/home/iec/datasets/cc3m/subset_5000/images",
+          "max_samples": null
+        },
+        "output": {
+          "run_dir": "/home/iec/PE-CIR-20260921-134120/runs/B1_server_20260921-155218"
+        }
+      },
+      "training_seed": 0
+    },
+    "B4": {
+      "path": "checkpoints/b4_best.pt",
+      "sha256": "8686f4caa888633fa60e6685d4049f2c6841b4b68d659d20259488e70746cb8d",
+      "variant": "B4",
+      "config": {
+        "model": {
+          "variant": "B4",
+          "backbone": "ViT-L-14-quickgelu",
+          "pretrained": "openai",
+          "hidden_dim": 512,
+          "slots": 8
+        },
+        "training": {
+          "epochs": 5,
+          "batch_size_per_device": 16,
+          "learning_rate": 0.0001,
+          "weight_decay": 0.1,
+          "precision": "amp",
+          "seed": 0,
+          "num_workers": 4,
+          "save_every_steps": 100,
+          "max_grad_norm": 1.0,
+          "cf_margin": 0.2,
+          "loss_weights": {
+            "factorization": 0.2,
+            "counterfactual": 1.0,
+            "verifier": 0.0
+          }
+        },
+        "data": {
+          "train_manifest": "/home/iec/datasets/cc3m/pseudo_screening/train.csv",
+          "image_root": "/home/iec/datasets/cc3m/subset_5000/images",
+          "max_samples": null
+        },
+        "output": {
+          "run_dir": "/home/iec/PE-CIR-20260921-134120/runs/B4_server_20260921-175002"
+        }
+      },
+      "training_seed": 0
+    },
+    "B5": {
+      "path": "checkpoints/b5_best.pt",
+      "sha256": "086eb8a18dff913fc933b55e3e6e784634311977066788d5cf6617062051ad1f",
+      "variant": "B5",
+      "config": {
+        "model": {
+          "variant": "B5",
+          "backbone": "ViT-L-14-quickgelu",
+          "pretrained": "openai",
+          "hidden_dim": 512,
+          "slots": 8
+        },
+        "training": {
+          "epochs": 5,
+          "batch_size_per_device": 16,
+          "learning_rate": 0.0001,
+          "weight_decay": 0.1,
+          "precision": "amp",
+          "seed": 0,
+          "num_workers": 4,
+          "save_every_steps": 100,
+          "max_grad_norm": 1.0,
+          "cf_margin": 0.2,
+          "loss_weights": {
+            "factorization": 0.2,
+            "counterfactual": 1.0,
+            "verifier": 0.5
+          }
+        },
+        "data": {
+          "train_manifest": "/home/iec/datasets/cc3m/pseudo_screening/train.csv",
+          "image_root": "/home/iec/datasets/cc3m/subset_5000/images",
+          "max_samples": null
+        },
+        "output": {
+          "run_dir": "/home/iec/PE-CIR-20260921-134120/runs/B5_override_20260922-085644"
+        }
+      },
+      "training_seed": 0
+    }
+  }
+}

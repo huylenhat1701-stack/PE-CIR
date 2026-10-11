@@ -185,12 +185,12 @@ class CFPECIRModel(nn.Module):
         beta: float = 0.5,
         gamma: float = 0.5,
     ) -> Tensor:
-        """Apply ``S_G + a log p_P + b log p_E - y log p_V`` to Top-K candidates."""
+        """Apply Eq. 30: ``S_G + α log p_P + β log p_E + γ log(1 - p_V)`` to Top-K candidates."""
 
         eps = torch.finfo(stage1_scores.dtype).eps
         return (
             stage1_scores
             + alpha * constraints.preserve.clamp_min(eps).log()
             + beta * constraints.edit.clamp_min(eps).log()
-            - gamma * constraints.violation.clamp_min(eps).log()
+            + gamma * (1.0 - constraints.violation).clamp_min(eps).log()
         )
