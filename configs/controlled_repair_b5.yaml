@@ -1,0 +1,37 @@
+model:
+  variant: B5
+  backbone: ViT-L-14-quickgelu
+  pretrained: openai
+  hidden_dim: 512
+  slots: 8
+
+training:
+  epochs: 5
+  batch_size_per_device: 16
+  learning_rate: 0.0001
+  weight_decay: 0.1
+  precision: amp
+  seed: 42
+  num_workers: 0
+  max_grad_norm: 1.0
+  cf_margin: 0.15
+  loss_weights:
+    factorization: 0.2
+    counterfactual: 0.8
+    verifier: 0.5 # BCE Loss weight for Verifier Head
+
+reranking:
+  formula: "eq_30" # S_final = S_G + alpha*log(p_P) + beta*log(p_E) + gamma*log(1 - p_V)
+  alpha: 0.5
+  beta: 0.5
+  gamma: 0.5
+  selective_gating: true
+  confidence_threshold: 0.60
+
+data:
+  train_manifest: output/BAN_GIAO_CHO_CO_20261010/1_train_manifest/train.csv
+  image_root: data/images
+  max_samples: null
+
+output:
+  run_dir: runs/B5_controlled_repair

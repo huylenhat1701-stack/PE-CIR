@@ -1,0 +1,29 @@
+model:
+  variant: B4
+  backbone: ViT-L-14-quickgelu
+  pretrained: openai
+  hidden_dim: 512
+  slots: 8
+
+training:
+  epochs: 5
+  batch_size_per_device: 16
+  learning_rate: 0.0001
+  weight_decay: 0.1
+  precision: amp
+  seed: 42
+  num_workers: 0
+  max_grad_norm: 1.0
+  cf_margin: 0.15 # Calibrated margin (lowered from aggressive 0.20 to avoid distortion)
+  loss_weights:
+    factorization: 0.2
+    counterfactual: 0.8 # Calibrated CF weight (lowered from 1.0 to prevent overriding retrieval)
+    verifier: 0.0
+
+data:
+  train_manifest: output/BAN_GIAO_CHO_CO_20261010/1_train_manifest/train.csv
+  image_root: data/images
+  max_samples: null
+
+output:
+  run_dir: runs/B4_controlled_repair
