@@ -541,9 +541,9 @@ def train_variant(
 
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--train-manifest", type=Path, default=Path("output/BAN_GIAO_CHO_CO_20261010/1_train_manifest/train.csv"))
+    p.add_argument("--train-manifest", type=Path, default=None, help="Path to input train manifest")
     p.add_argument("--val-manifest", type=Path, default=None, help="Optional external held-out validation manifest")
-    p.add_argument("--image-root", type=Path, default=Path("data/images"))
+    p.add_argument("--image-root", type=Path, default=None, help="Root folder for CC3M images")
     p.add_argument("--output-dir", type=Path, default=Path("runs/controlled_repair_b4_to_b5"))
     p.add_argument("--train-b1", action=argparse.BooleanOptionalAction, default=True, help="Train B1-clean with seed 42 as fair baseline before B4 (default: True)")
     p.add_argument("--b1-epochs", type=int, default=3, help="Epochs to train B1-clean (default: 3)")
@@ -583,6 +583,42 @@ def main() -> int:
         "cpu" if args.device == "auto" else args.device
     )
 
+    # Auto-detect train manifest if not specified or not existing
+    train_manifest = args.train_manifest
+    if train_manifest is None or not train_manifest.is_file():
+        candidates = [
+            Path("/home/iec/datasets/cc3m/pseudo_screening/train.csv"),
+            Path("data/train.csv"),
+            Path("runs/controlled_repair_experiment/clean_data/clean_train.csv"),
+            Path("output/BAN_GIAO_CHO_CO_20261010/1_train_manifest/train.csv"),
+        ]
+        found = False
+        for c in candidates:
+            if c.is_file():
+                train_manifest = c
+                found = True
+                break
+        if not found and train_manifest is None:
+            train_manifest = Path("data/train.csv")
+
+    log.info("Resolved train manifest: %s", train_manifest)
+
+    # Auto-detect image root
+    image_root = args.image_root
+    if image_root is None or not image_root.is_dir():
+        img_candidates = [
+            Path("/home/iec/datasets/cc3m/subset_5000/images"),
+            Path("data/images"),
+        ]
+        for ic in img_candidates:
+            if ic.is_dir():
+                image_root = ic
+                break
+        if image_root is None:
+            image_root = Path("data/images")
+
+    log.info("Resolved image root: %s", image_root)
+
     # 1. Baseline B1 specification
     b1_baseline = {
         "cf_a_win_percent": 80.04,
@@ -602,8 +638,9 @@ def main() -> int:
     clean_data_dir = output_dir / "clean_data"
     clean_data_dir.mkdir(parents=True, exist_ok=True)
     clean_train_csv, clean_val_csv, split_stats = clean_and_split_dataset(
-        args.train_manifest, clean_data_dir, val_manifest_path=args.val_manifest, val_ratio=0.1, seed=args.seed, log=log
+        train_manifest, clean_data_dir, val_manifest_path=args.val_manifest, val_ratio=0.1, seed=args.seed, log=log
     )
+
     (output_dir / "data_sanitization_stats.json").write_text(json.dumps(split_stats, indent=2), encoding="utf-8")
 
     if args.preflight_only:
@@ -630,7 +667,7 @@ def main() -> int:
         ).to(device)
         b1_model.load_state_dict(b1_state["model"])
         b1_metrics, b1_records = evaluate_counterfactual(
-            b1_model, backbone, clean_val_csv, args.image_root, device, batch_size=args.batch_size
+            b1_model, backbone, clean_val_csv, image_root, device, batch_size=args.batch_size
         )
         b1_baseline = {
             "cf_a_win_percent": b1_metrics.cf_a_win_percent,
@@ -653,11 +690,11 @@ def main() -> int:
                 "max_grad_norm": 1.0,
                 "loss_weights": {"factorization": 0.2, "counterfactual": 0.0, "verifier": 0.0},
             },
-            "data": {"train_manifest": str(clean_train_csv), "image_root": str(args.image_root)},
+            "data": {"train_manifest": str(clean_train_csv), "image_root": str(image_root)},
             "output": {"run_dir": str(b1_dir)},
         }
         b1_model, b1_metrics, b1_records = train_variant(
-            "B1", clean_train_csv, clean_val_csv, args.image_root, b1_dir, backbone, b1_config, log
+            "B1", clean_train_csv, clean_val_csv, image_root, b1_dir, backbone, b1_config, log
         )
         b1_baseline = {
             "cf_a_win_percent": b1_metrics.cf_a_win_percent,
@@ -683,13 +720,13 @@ def main() -> int:
             "cf_margin": args.cf_margin,
             "loss_weights": {"factorization": 0.2, "counterfactual": args.lambda_cf, "verifier": 0.0},
         },
-        "data": {"train_manifest": str(clean_train_csv), "image_root": str(args.image_root)},
+        "data": {"train_manifest": str(clean_train_csv), "image_root": str(image_root)},
         "output": {"run_dir": str(output_dir / "B4_controlled_repair")},
     }
 
     b4_dir = output_dir / "B4_controlled_repair"
     b4_model, b4_metrics, b4_records = train_variant(
-        "B4", clean_train_csv, clean_val_csv, args.image_root, b4_dir, backbone, b4_config, log
+        "B4", clean_train_csv, clean_val_csv, image_root, b4_dir, backbone, b4_config, log
     )
 
     # 6. Phase 2: Scientific GO Gate Verification with Cluster Bootstrap CI
@@ -717,7 +754,7 @@ def main() -> int:
 
     b4_state = torch.load(b4_dir / "best_checkpoint.pt", map_location=device, weights_only=True)["model"]
     b5_model, b5_metrics, _ = train_variant(
-        "B5", clean_train_csv, clean_val_csv, args.image_root, b5_dir, backbone, b5_config, log,
+        "B5", clean_train_csv, clean_val_csv, image_root, b5_dir, backbone, b5_config, log,
         warm_start_weights=b4_state,
     )
 
