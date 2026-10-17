@@ -1,0 +1,29 @@
+model:
+  variant: B1
+  backbone: ViT-L-14-quickgelu
+  pretrained: openai
+  hidden_dim: 512
+  slots: 8
+
+training:
+  epochs: 3
+  batch_size_per_device: 16
+  learning_rate: 0.0001
+  weight_decay: 0.1
+  precision: amp
+  seed: 42
+  num_workers: 0
+  save_every_steps: 100
+  max_grad_norm: 1.0
+  loss_weights:
+    factorization: 0.2
+    counterfactual: 0.0
+    verifier: 0.0
+
+data:
+  train_manifest: runs/controlled_repair_experiment/clean_data/clean_train.csv
+  image_root: /home/iec/datasets/cc3m/subset_5000/images
+  max_samples: null
+
+output:
+  run_dir: runs/controlled_repair_experiment/B1_clean_seed42

@@ -20,6 +20,7 @@ htmlcov/
 /logs/
 /output/
 /outputs/
+/runs/
 /tmp/
 *.pt
 *.pth
@@ -28,8 +29,44 @@ htmlcov/
 *.onnx
 *.npy
 *.npz
+*.zip
+*.tar.gz
+*.jsonl
 /reports/*download_failures.json
 /reports/*.predictions.jsonl
+
+# Experiment and evaluation results (JSON)
+runs/**/*.json
+output/**/*.json
+reports/**/*.json
+
+# Paper manuscripts, drafts, documents and reports
+/paper/
+*.docx
+*.pdf
+BAO_CAO_*
+TRANG_THAI_*
+CC_CIR_*
+*.drawio
+*extracted.txt
+
+# Paper generation, rendering and audit scripts
+audit_paper.py
+build_full_paper.py
+build_full_paper_docx.py
+build_status_docx.py
+check_paste.py
+check_structure.py
+check_tex.py
+create_progress_report_docx.py
+deepen_section3.py
+expand_part1.py
+expand_part2.py
+verify_all.py
+scripts/generate_drawio_xml.py
+scripts/generate_pipeline_diagram.py
+scripts/render_*.py
+scripts/export_sample_tuple.py
 
 # Local analysis tools and private configuration
 .codegraph/

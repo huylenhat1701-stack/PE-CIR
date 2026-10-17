@@ -63,7 +63,9 @@ class PseudoEditDataset(Dataset[dict[str, Tensor | str]]):
             "cf_b": self._load(row["cf_b"]),
             "modification": row["modification"],
             "attribute_type": row.get("attribute_type", "unknown"),
+            "reference_path": row["reference"],
         }
+
 
 
 def build_pseudo_edit_dataloader(
